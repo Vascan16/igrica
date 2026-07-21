@@ -1,1 +1,465 @@
-hej
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Najin večer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg-a: #241a2e;
+    --bg-b: #191223;
+    --glow: rgba(232, 178, 124, 0.28);
+    --accent: #e8b27c;
+    --ink: #f3e9dc;
+    --ink-soft: #cbb8ae;
+    --card: rgba(255, 255, 255, 0.045);
+    --card-line: rgba(243, 233, 220, 0.14);
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  body[data-act="2"] {
+    --bg-a: #1c1730; --bg-b: #14101f;
+    --glow: rgba(224, 160, 168, 0.26);
+    --accent: #e0a0a8;
+  }
+  body[data-act="3"] {
+    --bg-a: #290f1b; --bg-b: #16070f;
+    --glow: rgba(224, 106, 120, 0.30);
+    --accent: #ec8090;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { min-height: 100%; }
+  body {
+    font-family: "Inter", system-ui, sans-serif;
+    color: var(--ink);
+    background:
+      radial-gradient(120% 80% at 50% -8%, var(--glow), transparent 55%),
+      linear-gradient(180deg, var(--bg-a), var(--bg-b) 70%);
+    background-attachment: fixed;
+    transition: background 1400ms var(--ease);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: clamp(28px, 5vw, 56px) clamp(20px, 5vw, 40px) 96px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .top {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding-bottom: clamp(24px, 5vw, 40px);
+  }
+  .candle {
+    position: relative;
+    width: 26px;
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .flame {
+    width: 12px;
+    height: 20px;
+    border-radius: 50% 50% 46% 46% / 62% 62% 38% 38%;
+    background: radial-gradient(circle at 50% 70%, #fff6dd 0%, var(--accent) 45%, rgba(236,128,144,0.15) 80%, transparent 100%);
+    filter: drop-shadow(0 0 10px var(--accent));
+    transform-origin: 50% 90%;
+    animation: flicker 2.6s ease-in-out infinite;
+    margin-bottom: 3px;
+  }
+  .wax {
+    width: 14px;
+    border-radius: 3px 3px 2px 2px;
+    background: linear-gradient(180deg, #f3e9dc, #d9c6a8 40%, #b89b78);
+    box-shadow: inset 0 4px 6px rgba(255,255,255,0.35);
+    height: 108px;
+    transition: height 1200ms var(--ease);
+  }
+  body[data-act="2"] .wax { height: 68px; }
+  body[data-act="3"] .wax { height: 30px; }
+  body[data-act="intro"] .flame,
+  body[data-act="done"] .flame { animation: none; opacity: 0.9; }
+  @keyframes flicker {
+    0%, 100% { transform: rotate(-1.5deg) scaleY(1); opacity: 1; }
+    25%      { transform: rotate(1.5deg) scaleY(1.06); opacity: 0.92; }
+    50%      { transform: rotate(-1deg) scaleY(0.96); opacity: 1; }
+    75%      { transform: rotate(1deg) scaleY(1.03); opacity: 0.95; }
+  }
+  .top-meta { flex: 1; }
+  .eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .act-title {
+    font-family: "Fraunces", serif;
+    font-weight: 400;
+    font-size: clamp(1.5rem, 5vw, 2.1rem);
+    line-height: 1.1;
+    margin-top: 4px;
+    letter-spacing: -0.01em;
+  }
+  .act-sub {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    font-style: italic;
+    margin-top: 6px;
+    font-family: "Fraunces", serif;
+  }
+  .screen { display: none; flex: 1; flex-direction: column; }
+  .screen.on { display: flex; animation: rise 700ms var(--ease); }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  #intro { justify-content: center; text-align: center; gap: 22px; padding: 24px 0 12px; }
+  .intro-eyebrow {
+    font-size: 0.72rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--accent);
+  }
+  .intro-title {
+    font-family: "Fraunces", serif;
+    font-weight: 300;
+    font-size: clamp(3rem, 13vw, 5.4rem);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+  .intro-title em { font-style: italic; font-weight: 400; }
+  .intro-lead {
+    color: var(--ink-soft);
+    font-size: 1.06rem;
+    max-width: 40ch;
+    margin: 0 auto;
+  }
+  .intro-note {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    color: var(--ink);
+    opacity: 0.85;
+    font-size: 1rem;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 26px;
+  }
+  @media (max-width: 480px) { .cards { grid-template-columns: 1fr; } }
+  .card {
+    position: relative;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    text-align: left;
+    perspective: 1000px;
+    min-height: 132px;
+  }
+  .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 132px;
+    transition: transform 620ms var(--ease);
+    transform-style: preserve-3d;
+  }
+  .card.flipped .card-inner { transform: rotateY(180deg); }
+  .face {
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    padding: 18px 18px 16px;
+    display: flex;
+    border: 1px solid var(--card-line);
+    background: var(--card);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.28);
+  }
+  .face-back {
+    align-items: center;
+    justify-content: center;
+    background:
+      radial-gradient(80% 120% at 50% 0%, rgba(255,255,255,0.06), transparent 60%),
+      var(--card);
+  }
+  .card-no {
+    font-family: "Fraunces", serif;
+    font-size: 2rem;
+    color: var(--accent);
+    opacity: 0.85;
+  }
+  .card-tap {
+    position: absolute;
+    bottom: 12px; left: 0; right: 0;
+    text-align: center;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    opacity: 0.7;
+  }
+  .face-front {
+    transform: rotateY(180deg);
+    align-items: center;
+  }
+  .prompt {
+    font-family: "Fraunces", serif;
+    font-weight: 400;
+    font-size: 1.06rem;
+    line-height: 1.35;
+    letter-spacing: -0.005em;
+  }
+  .card:focus-visible { outline: none; }
+  .card:focus-visible .card-inner { box-shadow: 0 0 0 2px var(--accent); border-radius: 16px; }
+  .card:hover:not(.flipped) .face-back { border-color: var(--accent); }
+  .nav {
+    margin-top: auto;
+    padding-top: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+  }
+  .btn {
+    font: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 999px;
+    padding: 13px 26px;
+    border: 1px solid var(--card-line);
+    background: transparent;
+    color: var(--ink);
+    transition: transform 200ms var(--ease), background 200ms, border-color 200ms;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .btn-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #201018;
+    font-weight: 600;
+  }
+  .btn-ghost { color: var(--ink-soft); }
+  .btn-ghost:hover { color: var(--ink); border-color: var(--accent); }
+  .dots { display: flex; gap: 8px; }
+  .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--card-line);
+    transition: background 400ms, transform 400ms;
+  }
+  .dot.active { background: var(--accent); transform: scale(1.35); }
+  #done { justify-content: center; text-align: center; gap: 20px; }
+  .done-title {
+    font-family: "Fraunces", serif; font-weight: 300;
+    font-size: clamp(2.2rem, 9vw, 3.6rem); line-height: 1;
+  }
+  .done-title em { font-style: italic; }
+  .done-sub { color: var(--ink-soft); font-size: 1.05rem; max-width: 38ch; margin: 0 auto; }
+  .footer {
+    text-align: center;
+    color: var(--ink-soft);
+    opacity: 0.5;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    padding-top: 40px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+    .card-inner { transition: none; }
+  }
+</style>
+</head>
+<body data-act="intro">
+  <div class="wrap">
+    <header class="top" id="top" hidden>
+      <div class="candle" aria-hidden="true">
+        <div class="flame"></div>
+        <div class="wax"></div>
+      </div>
+      <div class="top-meta">
+        <div class="eyebrow" id="actEyebrow">Prvi del</div>
+        <h1 class="act-title" id="actTitle">Za ogrevanje</h1>
+        <p class="act-sub" id="actSub">Lahkotno, kot bi se spet spoznavala.</p>
+      </div>
+    </header>
+
+    <section class="screen on" id="intro" aria-label="Uvod">
+      <div class="intro-eyebrow">Za naju</div>
+      <h1 class="intro-title">Najin<br /><em>večer</em></h1>
+      <p class="intro-lead">Trije deli, en večer. Vsaka karta je vprašanje — zate ali zanjo. Obrni jo, preberi na glas in si vzemita čas za odgovor.</p>
+      <p class="intro-note">Brez telefonov, brez naglice. Samo midva.</p>
+      <div style="margin-top:8px">
+        <button class="btn btn-primary" id="startBtn">Prižgi svečo</button>
+      </div>
+    </section>
+
+    <section class="screen" id="act" aria-label="Karte">
+      <div class="cards" id="cards"></div>
+      <nav class="nav">
+        <button class="btn btn-ghost" id="backBtn">Nazaj</button>
+        <div class="dots" aria-hidden="true">
+          <span class="dot" data-dot="1"></span>
+          <span class="dot" data-dot="2"></span>
+          <span class="dot" data-dot="3"></span>
+        </div>
+        <button class="btn" id="nextBtn">Naprej</button>
+      </nav>
+    </section>
+
+    <section class="screen" id="done" aria-label="Zaključek">
+      <h2 class="done-title">Konec kart,<br /><em>ne pa večera.</em></h2>
+      <p class="done-sub">Sveča naj dogori do konca. Kar sledi, ni več napisano tukaj.</p>
+      <div>
+        <button class="btn btn-ghost" id="restartBtn">Začni znova</button>
+      </div>
+    </section>
+
+    <div class="footer">z ljubeznijo · najin večer</div>
+  </div>
+
+<script>
+  const ACTS = [
+    {
+      act: "1",
+      eyebrow: "Prvi del",
+      title: "Za ogrevanje",
+      sub: "Lahkotno, kot bi se spet spoznavala.",
+      cards: [
+        "Kaj je bil najlepši drobec tvojega dneva?",
+        "Če bi jutri lahko zbežala kamorkoli za en dan — kam, in bi me vzela s sabo?",
+        "Ob katerem najinem skupnem spominu se še vedno od srca nasmejiš?",
+        "Za kaj si mi ta teden hvaležna, pa ti tega še nisem povedal/a?",
+        "Katera pesem ali okus te danes spomni name?",
+        "Kaj bi si nocoj najbolj želela — kozarec vina, sprehod ali samo tišino ob meni?"
+      ]
+    },
+    {
+      act: "2",
+      eyebrow: "Drugi del",
+      title: "Bliže",
+      sub: "Zdaj pa iskreno in nežno.",
+      cards: [
+        "Kdaj si se ob meni nazadnje počutila zares varno?",
+        "Kateri najin trenutek bi si želela podoživeti točno takšnega, kot je bil?",
+        "Kaj pri meni ceniš, pa se bojiš, da ti tega premalo pokažem?",
+        "Česa se v zadnjem času tiho bojiš — in kako ti lahko stojim ob strani?",
+        "Kaj ti pomenim, kar težko ubesediš?",
+        "Kdaj si se zadnjič na novo zaljubila vame — ob čem?"
+      ]
+    },
+    {
+      act: "3",
+      eyebrow: "Tretji del",
+      title: "Samo midva",
+      sub: "Ko luči utihnejo …",
+      cards: [
+        "Kaj mi prvo pade v oči, ko te nocoj pogledam? Povej mi, kaj vidiš ti.",
+        "Kateri moj dotik te najbolj prevzame — in kje si ga zdaj najbolj želiš?",
+        "Se spomniš najine prve noči? Kaj ti je najbolj ostalo v spominu?",
+        "Kaj bi si nocoj želela, da ti počasi naredim?",
+        "Z eno besedo: kako se počutiš, ko te objamem od zadaj?",
+        "Zapri oči … kam naj te poljubim najprej?"
+      ]
+    }
+  ];
+
+  const body = document.body;
+  const top = document.getElementById("top");
+  const screens = {
+    intro: document.getElementById("intro"),
+    act: document.getElementById("act"),
+    done: document.getElementById("done")
+  };
+  const cardsEl = document.getElementById("cards");
+  const actEyebrow = document.getElementById("actEyebrow");
+  const actTitle = document.getElementById("actTitle");
+  const actSub = document.getElementById("actSub");
+  const dots = [...document.querySelectorAll(".dot")];
+  const backBtn = document.getElementById("backBtn");
+  const nextBtn = document.getElementById("nextBtn");
+
+  let current = 0;
+
+  function show(name) {
+    Object.values(screens).forEach(s => s.classList.remove("on"));
+    screens[name].classList.add("on");
+    top.hidden = (name !== "act");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function renderAct(i) {
+    const data = ACTS[i];
+    body.dataset.act = data.act;
+    actEyebrow.textContent = data.eyebrow;
+    actTitle.textContent = data.title;
+    actSub.textContent = data.sub;
+    dots.forEach((d, idx) => d.classList.toggle("active", idx === i));
+
+    cardsEl.innerHTML = "";
+    data.cards.forEach((text, idx) => {
+      const btn = document.createElement("button");
+      btn.className = "card";
+      btn.setAttribute("aria-label", "Karta " + (idx + 1) + ", odkrij vprašanje");
+      btn.innerHTML =
+        '<div class="card-inner">' +
+          '<div class="face face-back">' +
+            '<span class="card-no">' + (idx + 1) + '</span>' +
+            '<span class="card-tap">obrni</span>' +
+          '</div>' +
+          '<div class="face face-front">' +
+            '<span class="prompt">' + text + '</span>' +
+          '</div>' +
+        '</div>';
+      btn.addEventListener("click", () => btn.classList.toggle("flipped"));
+      cardsEl.appendChild(btn);
+    });
+
+    backBtn.textContent = i === 0 ? "Nazaj na uvod" : "Prejšnji del";
+    nextBtn.textContent = i === ACTS.length - 1 ? "Zaključi" : "Naslednji del";
+  }
+
+  document.getElementById("startBtn").addEventListener("click", () => {
+    current = 0;
+    renderAct(current);
+    show("act");
+  });
+
+  nextBtn.addEventListener("click", () => {
+    if (current < ACTS.length - 1) {
+      current++;
+      renderAct(current);
+      show("act");
+    } else {
+      body.dataset.act = "done";
+      show("done");
+    }
+  });
+
+  backBtn.addEventListener("click", () => {
+    if (current === 0) {
+      body.dataset.act = "intro";
+      show("intro");
+    } else {
+      current--;
+      renderAct(current);
+      show("act");
+    }
+  });
+
+  document.getElementById("restartBtn").addEventListener("click", () => {
+    body.dataset.act = "intro";
+    show("intro");
+  });
+</script>
+</body>
+</html>
