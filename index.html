@@ -374,7 +374,7 @@
   ];
 
   const body = document.body;
-  const top = document.getElementById("top");
+  const topEl = document.getElementById("top");
   const screens = {
     intro: document.getElementById("intro"),
     act: document.getElementById("act"),
@@ -393,7 +393,7 @@
   function show(name) {
     Object.values(screens).forEach(s => s.classList.remove("on"));
     screens[name].classList.add("on");
-    top.hidden = (name !== "act");
+    topEl.hidden = (name !== "act");
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
