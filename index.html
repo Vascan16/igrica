@@ -9,26 +9,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 <style>
   :root {
-    --bg-a: #241a2e;
-    --bg-b: #191223;
+    --bg-a: #241a2e; --bg-b: #191223;
     --glow: rgba(232, 178, 124, 0.28);
     --accent: #e8b27c;
-    --ink: #f3e9dc;
-    --ink-soft: #cbb8ae;
-    --card: rgba(255, 255, 255, 0.045);
+    --ink: #f3e9dc; --ink-soft: #cbb8ae;
+    --card: rgba(255, 255, 255, 0.05);
     --card-line: rgba(243, 233, 220, 0.14);
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
   }
-  body[data-act="2"] {
-    --bg-a: #1c1730; --bg-b: #14101f;
-    --glow: rgba(224, 160, 168, 0.26);
-    --accent: #e0a0a8;
-  }
-  body[data-act="3"] {
-    --bg-a: #290f1b; --bg-b: #16070f;
-    --glow: rgba(224, 106, 120, 0.30);
-    --accent: #ec8090;
-  }
+  body[data-act="2"] { --bg-a:#1c1730; --bg-b:#14101f; --glow:rgba(224,160,168,0.26); --accent:#e0a0a8; }
+  body[data-act="3"] { --bg-a:#201033; --bg-b:#160a24; --glow:rgba(214,140,200,0.28); --accent:#d98cc8; }
+  body[data-act="4"] { --bg-a:#2a0f1c; --bg-b:#180712; --glow:rgba(236,128,144,0.30); --accent:#ec8090; }
+  body[data-act="5"] { --bg-a:#260710; --bg-b:#15040a; --glow:rgba(240,96,122,0.32); --accent:#f0607a; }
+  body[data-act="6"] { --bg-a:#1e040a; --bg-b:#100206; --glow:rgba(255,90,110,0.34); --accent:#ff6478; }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { min-height: 100%; }
   body {
@@ -40,355 +34,345 @@
     background-attachment: fixed;
     transition: background 1400ms var(--ease);
     -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
     line-height: 1.55;
     overflow-x: hidden;
   }
   .wrap {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: clamp(28px, 5vw, 56px) clamp(20px, 5vw, 40px) 96px;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    max-width: 620px; margin: 0 auto;
+    padding: clamp(24px,5vw,48px) clamp(20px,5vw,36px) 80px;
+    min-height: 100vh; display: flex; flex-direction: column;
   }
-  .top {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    padding-bottom: clamp(24px, 5vw, 40px);
-  }
-  .candle {
-    position: relative;
-    width: 26px;
-    flex: 0 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+
+  /* header */
+  .top { display: flex; align-items: center; gap: 16px; padding-bottom: 22px; }
+  .candle { width: 24px; flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; }
   .flame {
-    width: 12px;
-    height: 20px;
+    width: 12px; height: 20px;
     border-radius: 50% 50% 46% 46% / 62% 62% 38% 38%;
     background: radial-gradient(circle at 50% 70%, #fff6dd 0%, var(--accent) 45%, rgba(236,128,144,0.15) 80%, transparent 100%);
     filter: drop-shadow(0 0 10px var(--accent));
-    transform-origin: 50% 90%;
-    animation: flicker 2.6s ease-in-out infinite;
-    margin-bottom: 3px;
+    transform-origin: 50% 90%; animation: flicker 2.6s ease-in-out infinite; margin-bottom: 3px;
   }
   .wax {
-    width: 14px;
-    border-radius: 3px 3px 2px 2px;
+    width: 14px; border-radius: 3px 3px 2px 2px;
     background: linear-gradient(180deg, #f3e9dc, #d9c6a8 40%, #b89b78);
     box-shadow: inset 0 4px 6px rgba(255,255,255,0.35);
-    height: 108px;
-    transition: height 1200ms var(--ease);
+    height: 104px; transition: height 1200ms var(--ease);
   }
-  body[data-act="2"] .wax { height: 68px; }
-  body[data-act="3"] .wax { height: 30px; }
-  body[data-act="intro"] .flame,
-  body[data-act="done"] .flame { animation: none; opacity: 0.9; }
+  body[data-act="2"] .wax { height: 84px; }
+  body[data-act="3"] .wax { height: 66px; }
+  body[data-act="4"] .wax { height: 48px; }
+  body[data-act="5"] .wax { height: 30px; }
+  body[data-act="6"] .wax { height: 16px; }
+  body[data-act="intro"] .flame, body[data-act="done"] .flame { animation: none; opacity: 0.9; }
   @keyframes flicker {
-    0%, 100% { transform: rotate(-1.5deg) scaleY(1); opacity: 1; }
-    25%      { transform: rotate(1.5deg) scaleY(1.06); opacity: 0.92; }
-    50%      { transform: rotate(-1deg) scaleY(0.96); opacity: 1; }
-    75%      { transform: rotate(1deg) scaleY(1.03); opacity: 0.95; }
+    0%,100% { transform: rotate(-1.5deg) scaleY(1); opacity: 1; }
+    25% { transform: rotate(1.5deg) scaleY(1.06); opacity: 0.92; }
+    50% { transform: rotate(-1deg) scaleY(0.96); opacity: 1; }
+    75% { transform: rotate(1deg) scaleY(1.03); opacity: 0.95; }
   }
   .top-meta { flex: 1; }
-  .eyebrow {
-    font-size: 0.72rem;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 500;
-  }
-  .act-title {
-    font-family: "Fraunces", serif;
-    font-weight: 400;
-    font-size: clamp(1.5rem, 5vw, 2.1rem);
-    line-height: 1.1;
-    margin-top: 4px;
-    letter-spacing: -0.01em;
-  }
-  .act-sub {
-    color: var(--ink-soft);
-    font-size: 0.95rem;
-    font-style: italic;
-    margin-top: 6px;
-    font-family: "Fraunces", serif;
-  }
+  .eyebrow { font-size: 0.7rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+  .act-title { font-family: "Fraunces", serif; font-weight: 400; font-size: clamp(1.4rem,5vw,1.9rem); line-height: 1.1; margin-top: 3px; }
+  .act-sub { color: var(--ink-soft); font-size: 0.9rem; font-style: italic; margin-top: 4px; font-family: "Fraunces", serif; }
+
+  /* screens */
   .screen { display: none; flex: 1; flex-direction: column; }
   .screen.on { display: flex; animation: rise 700ms var(--ease); }
   @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-  #intro { justify-content: center; text-align: center; gap: 22px; padding: 24px 0 12px; }
-  .intro-eyebrow {
-    font-size: 0.72rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--accent);
-  }
-  .intro-title {
-    font-family: "Fraunces", serif;
-    font-weight: 300;
-    font-size: clamp(3rem, 13vw, 5.4rem);
-    line-height: 0.95;
-    letter-spacing: -0.02em;
-  }
+
+  /* intro / setup */
+  #intro { justify-content: center; text-align: center; gap: 20px; }
+  .intro-eyebrow { font-size: 0.7rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--accent); }
+  .intro-title { font-family: "Fraunces", serif; font-weight: 300; font-size: clamp(3rem,13vw,5rem); line-height: 0.95; letter-spacing: -0.02em; }
   .intro-title em { font-style: italic; font-weight: 400; }
-  .intro-lead {
-    color: var(--ink-soft);
-    font-size: 1.06rem;
-    max-width: 40ch;
-    margin: 0 auto;
+  .intro-lead { color: var(--ink-soft); font-size: 1.02rem; max-width: 40ch; margin: 0 auto; }
+  .names { display: flex; gap: 12px; max-width: 380px; margin: 6px auto 0; }
+  .field { flex: 1; text-align: left; }
+  .field label { font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); }
+  .field input {
+    width: 100%; margin-top: 6px; padding: 12px 14px;
+    background: var(--card); border: 1px solid var(--card-line); border-radius: 12px;
+    color: var(--ink); font: inherit; font-size: 1rem;
   }
-  .intro-note {
-    font-family: "Fraunces", serif;
-    font-style: italic;
-    color: var(--ink);
-    opacity: 0.85;
-    font-size: 1rem;
+  .field input:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .intro-note { font-family: "Fraunces", serif; font-style: italic; opacity: 0.85; font-size: 0.95rem; }
+
+  /* play area */
+  #act { gap: 4px; }
+  .turn {
+    text-align: center; padding: 6px 0 2px;
+    font-size: 0.82rem; letter-spacing: 0.04em; color: var(--ink-soft);
   }
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-    margin-top: 26px;
+  .turn b { color: var(--accent); font-weight: 600; }
+  .qcard {
+    background: var(--card); border: 1px solid var(--card-line); border-radius: 20px;
+    padding: 34px 26px; min-height: 210px; margin-top: 10px;
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    box-shadow: 0 14px 40px rgba(0,0,0,0.3);
   }
-  @media (max-width: 480px) { .cards { grid-template-columns: 1fr; } }
-  .card {
-    position: relative;
-    border: none;
-    background: none;
-    padding: 0;
-    cursor: pointer;
-    font: inherit;
-    color: inherit;
-    text-align: left;
-    perspective: 1000px;
-    min-height: 132px;
+  .qcard.pulse { animation: pop 380ms var(--ease); }
+  @keyframes pop { 0% { transform: scale(0.97); opacity: 0.5; } 100% { transform: scale(1); opacity: 1; } }
+  .qtext { font-family: "Fraunces", serif; font-size: clamp(1.2rem,4.6vw,1.55rem); line-height: 1.35; }
+  .qplaceholder { color: var(--ink-soft); font-style: italic; }
+
+  .action {
+    margin-top: 12px; border: 1px dashed var(--accent); border-radius: 14px;
+    padding: 14px 18px; text-align: center; color: var(--ink);
+    background: rgba(255,255,255,0.03); display: none;
   }
-  .card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    min-height: 132px;
-    transition: transform 620ms var(--ease);
-    transform-style: preserve-3d;
-  }
-  .card.flipped .card-inner { transform: rotateY(180deg); }
-  .face {
-    position: absolute;
-    inset: 0;
-    border-radius: 16px;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    padding: 18px 18px 16px;
-    display: flex;
-    border: 1px solid var(--card-line);
-    background: var(--card);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.28);
-  }
-  .face-back {
-    align-items: center;
-    justify-content: center;
-    background:
-      radial-gradient(80% 120% at 50% 0%, rgba(255,255,255,0.06), transparent 60%),
-      var(--card);
-  }
-  .card-no {
-    font-family: "Fraunces", serif;
-    font-size: 2rem;
-    color: var(--accent);
-    opacity: 0.85;
-  }
-  .card-tap {
-    position: absolute;
-    bottom: 12px; left: 0; right: 0;
-    text-align: center;
-    font-size: 0.68rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    opacity: 0.7;
-  }
-  .face-front {
-    transform: rotateY(180deg);
-    align-items: center;
-  }
-  .prompt {
-    font-family: "Fraunces", serif;
-    font-weight: 400;
-    font-size: 1.06rem;
-    line-height: 1.35;
-    letter-spacing: -0.005em;
-  }
-  .card:focus-visible { outline: none; }
-  .card:focus-visible .card-inner { box-shadow: 0 0 0 2px var(--accent); border-radius: 16px; }
-  .card:hover:not(.flipped) .face-back { border-color: var(--accent); }
-  .nav {
-    margin-top: auto;
-    padding-top: 34px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 14px;
-  }
+  .action.show { display: block; animation: pop 380ms var(--ease); }
+  .action span { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 4px; }
+  .action p { font-family: "Fraunces", serif; font-size: 1.05rem; }
+
+  .rolls { display: flex; gap: 10px; margin-top: 16px; }
   .btn {
-    font: inherit;
-    font-weight: 500;
-    cursor: pointer;
-    border-radius: 999px;
-    padding: 13px 26px;
-    border: 1px solid var(--card-line);
-    background: transparent;
-    color: var(--ink);
-    transition: transform 200ms var(--ease), background 200ms, border-color 200ms;
+    font: inherit; font-weight: 500; cursor: pointer; border-radius: 999px;
+    padding: 14px 20px; border: 1px solid var(--card-line); background: transparent; color: var(--ink);
+    transition: transform 180ms var(--ease), background 180ms, border-color 180ms; flex: 1;
   }
   .btn:hover { transform: translateY(-2px); }
   .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-  .btn-primary {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: #201018;
-    font-weight: 600;
-  }
-  .btn-ghost { color: var(--ink-soft); }
+  .btn-primary { background: var(--accent); border-color: var(--accent); color: #1a0a10; font-weight: 600; }
+  .btn-dice .die { display: inline-block; transition: transform 500ms var(--ease); }
+  .btn-dice.rolling .die { transform: rotate(360deg) scale(1.3); }
+  .btn-ghost { color: var(--ink-soft); flex: 0 0 auto; padding: 14px 18px; }
   .btn-ghost:hover { color: var(--ink); border-color: var(--accent); }
-  .dots { display: flex; gap: 8px; }
-  .dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--card-line);
-    transition: background 400ms, transform 400ms;
-  }
-  .dot.active { background: var(--accent); transform: scale(1.35); }
-  #done { justify-content: center; text-align: center; gap: 20px; }
-  .done-title {
-    font-family: "Fraunces", serif; font-weight: 300;
-    font-size: clamp(2.2rem, 9vw, 3.6rem); line-height: 1;
-  }
+
+  .nav { margin-top: auto; padding-top: 26px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .dots { display: flex; gap: 7px; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--card-line); transition: background 400ms, transform 400ms; }
+  .dot.active { background: var(--accent); transform: scale(1.4); }
+
+  #done { justify-content: center; text-align: center; gap: 18px; }
+  .done-title { font-family: "Fraunces", serif; font-weight: 300; font-size: clamp(2.2rem,9vw,3.4rem); line-height: 1; }
   .done-title em { font-style: italic; }
-  .done-sub { color: var(--ink-soft); font-size: 1.05rem; max-width: 38ch; margin: 0 auto; }
-  .footer {
-    text-align: center;
-    color: var(--ink-soft);
-    opacity: 0.5;
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
-    padding-top: 40px;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    * { animation: none !important; transition: none !important; }
-    .card-inner { transition: none; }
-  }
+  .done-sub { color: var(--ink-soft); font-size: 1.02rem; max-width: 38ch; margin: 0 auto; }
+
+  .footer { text-align: center; color: var(--ink-soft); opacity: 0.45; font-size: 0.7rem; letter-spacing: 0.1em; padding-top: 34px; }
+
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 </style>
 </head>
 <body data-act="intro">
   <div class="wrap">
+
     <header class="top" id="top" hidden>
-      <div class="candle" aria-hidden="true">
-        <div class="flame"></div>
-        <div class="wax"></div>
-      </div>
+      <div class="candle" aria-hidden="true"><div class="flame"></div><div class="wax"></div></div>
       <div class="top-meta">
-        <div class="eyebrow" id="actEyebrow">Prvi del</div>
-        <h1 class="act-title" id="actTitle">Za ogrevanje</h1>
-        <p class="act-sub" id="actSub">Lahkotno, kot bi se spet spoznavala.</p>
+        <div class="eyebrow" id="actEyebrow"></div>
+        <h1 class="act-title" id="actTitle"></h1>
+        <p class="act-sub" id="actSub"></p>
       </div>
     </header>
 
-    <section class="screen on" id="intro" aria-label="Uvod">
+    <!-- INTRO / SETUP -->
+    <section class="screen on" id="intro">
       <div class="intro-eyebrow">Za naju</div>
       <h1 class="intro-title">Najin<br /><em>večer</em></h1>
-      <p class="intro-lead">Trije deli, en večer. Vsaka karta je vprašanje — zate ali zanjo. Obrni jo, preberi na glas in si vzemita čas za odgovor.</p>
-      <p class="intro-note">Brez telefonov, brez naglice. Samo midva.</p>
-      <div style="margin-top:8px">
-        <button class="btn btn-primary" id="startBtn">Prižgi svečo</button>
+      <p class="intro-lead">Šest stopenj, en večer. Vprašanja žrebeta s kocko, izmenično. Od lahkotnega klepeta do brez meja — v svojem tempu.</p>
+      <div class="names">
+        <div class="field"><label>Prvi</label><input id="nameA" type="text" placeholder="Ime" maxlength="16" /></div>
+        <div class="field"><label>Druga</label><input id="nameB" type="text" placeholder="Ime" maxlength="16" /></div>
       </div>
+      <p class="intro-note">Brez telefonov, brez naglice. Samo midva.</p>
+      <div><button class="btn btn-primary" id="startBtn" style="flex:0 0 auto; padding:14px 34px;">Prižgi svečo</button></div>
     </section>
 
-    <section class="screen" id="act" aria-label="Karte">
-      <div class="cards" id="cards"></div>
+    <!-- PLAY -->
+    <section class="screen" id="act">
+      <p class="turn" id="turn"></p>
+      <div class="qcard" id="qcard"><span class="qtext qplaceholder" id="qtext">Vrzi kocko za prvo vprašanje.</span></div>
+      <div class="action" id="action"><span>Akcijska kocka</span><p id="actionText"></p></div>
+      <div class="rolls">
+        <button class="btn btn-primary btn-dice" id="diceBtn"><span class="die">🎲</span> Vprašanje</button>
+        <button class="btn btn-dice" id="actionBtn" hidden><span class="die">🔥</span> Akcija</button>
+      </div>
       <nav class="nav">
-        <button class="btn btn-ghost" id="backBtn">Nazaj</button>
+        <button class="btn btn-ghost" id="backBtn">‹</button>
         <div class="dots" aria-hidden="true">
-          <span class="dot" data-dot="1"></span>
-          <span class="dot" data-dot="2"></span>
-          <span class="dot" data-dot="3"></span>
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
         </div>
-        <button class="btn" id="nextBtn">Naprej</button>
+        <button class="btn btn-ghost" id="nextBtn">›</button>
       </nav>
     </section>
 
-    <section class="screen" id="done" aria-label="Zaključek">
+    <!-- DONE -->
+    <section class="screen" id="done">
       <h2 class="done-title">Konec kart,<br /><em>ne pa večera.</em></h2>
       <p class="done-sub">Sveča naj dogori do konca. Kar sledi, ni več napisano tukaj.</p>
-      <div>
-        <button class="btn btn-ghost" id="restartBtn">Začni znova</button>
-      </div>
+      <div><button class="btn btn-ghost" id="restartBtn" style="flex:0 0 auto; padding:13px 28px;">Začni znova</button></div>
     </section>
 
     <div class="footer">z ljubeznijo · najin večer</div>
   </div>
 
 <script>
-  const ACTS = [
+  const STAGES = [
     {
-      act: "1",
-      eyebrow: "Prvi del",
-      title: "Za ogrevanje",
-      sub: "Lahkotno, kot bi se spet spoznavala.",
-      cards: [
+      act:"1", eyebrow:"1. stopnja · 6", title:"Za ogrevanje", sub:"Lahkotno, kot bi se spet spoznavala.",
+      questions:[
         "Kaj je bil najlepši drobec tvojega dneva?",
-        "Če bi jutri lahko zbežala kamorkoli za en dan — kam, in bi me vzela s sabo?",
+        "Če bi jutri lahko zbežala kamorkoli za en dan, kam bi šla — in bi me vzela s sabo?",
         "Ob katerem najinem skupnem spominu se še vedno od srca nasmejiš?",
-        "Za kaj si mi ta teden hvaležna, pa ti tega še nisem povedal/a?",
+        "Za kaj si mi ta teden hvaležna, pa ti tega še nisem povedal?",
         "Katera pesem ali okus te danes spomni name?",
-        "Kaj bi si nocoj najbolj želela — kozarec vina, sprehod ali samo tišino ob meni?"
+        "Kaj bi si nocoj najbolj želela — kozarec vina, sprehod ali samo tišino ob meni?",
+        "Katero stvar sva nazadnje naredila prvič skupaj?",
+        "Če bi imela nocoj tri ure čisto zase, kako bi jih porabila?",
+        "Katera moja navada te vedno nasmeji?",
+        "Kaj si si kot otrok predstavljala, da boš počela pri teh letih?",
+        "Kateri najin 'notranji vic' ti pride prvi na misel?",
+        "Kaj bi rada počela z mano več, pa nama v vsakdanu zmanjka časa?"
       ]
     },
     {
-      act: "2",
-      eyebrow: "Drugi del",
-      title: "Bliže",
-      sub: "Zdaj pa iskreno in nežno.",
-      cards: [
+      act:"2", eyebrow:"2. stopnja · 6", title:"Bliže", sub:"Zdaj pa iskreno in nežno.",
+      questions:[
         "Kdaj si se ob meni nazadnje počutila zares varno?",
         "Kateri najin trenutek bi si želela podoživeti točno takšnega, kot je bil?",
         "Kaj pri meni ceniš, pa se bojiš, da ti tega premalo pokažem?",
         "Česa se v zadnjem času tiho bojiš — in kako ti lahko stojim ob strani?",
         "Kaj ti pomenim, kar težko ubesediš?",
-        "Kdaj si se zadnjič na novo zaljubila vame — ob čem?"
+        "Kdaj si se zadnjič na novo zaljubila vame — ob čem?",
+        "Kaj sem naredil, kar ti je ostalo v srcu, jaz pa morda niti ne vem?",
+        "Kakšno obljubo za prihodnje leto bi mi rada dala?",
+        "Kdaj se ob meni počutiš najbolj razumljeno?",
+        "Katero svojo plat mi pokažeš samo takrat, ko sva sama?",
+        "Kaj bi rada, da vem o tebi, pa ti tega ni lahko povedati?",
+        "Kako izgleda tvoja predstava popolnega večera v dvoje?",
+        "Bi rada kaj razčistila ali mi kaj povedala z olajšanjem?"
       ]
     },
     {
-      act: "3",
-      eyebrow: "Tretji del",
-      title: "Samo midva",
-      sub: "Ko luči utihnejo …",
-      cards: [
-        "Kaj mi prvo pade v oči, ko te nocoj pogledam? Povej mi, kaj vidiš ti.",
+      act:"3", eyebrow:"3. stopnja · 6", title:"Iskrice", sub:"Flirt in prva rahla bližina.",
+      questions:[
+        "Kaj mi prvo pade v oči, ko te pogledam čez sobo?",
+        "Kdaj si se danes ujela, da misliš name?",
+        "Katera moja poteza ti vedno pospeši utrip?",
+        "Z eno besedo: kako se počutiš, ko te primem za roko?",
+        "Kateri kompliment bi rada slišala od mene prav zdaj?",
+        "Se spomniš najinega prvega poljuba? Kje sva bila?",
+        "Kaj te je takrat na meni najbolj pritegnilo?",
+        "Približaj se in mi šepni, kaj ti je najbolj všeč pri meni.",
+        "Ob katerem delu dneva si najbolj želiš mojega objema?",
+        "Poglej me v oči deset sekund brez besed — kaj si mislila?",
+        "Kateri moj vonj ali gib povezuješ z željo?",
+        "Kam bi rada, da te zdaj čisto rahlo pobožam?",
+        "Kdaj se počutiš najbolj zaželeno?"
+      ],
+      actions:[
+        "Poglejta se v oči 15 sekund brez besed.",
+        "Primi partnerja za roko in mu nežno preriši dlan.",
+        "Šepni partnerju kompliment na uho.",
+        "Objem, ki traja, dokler oba ne izdihneta.",
+        "Odmakni partnerju las z obraza in ga poglej.",
+        "Poljub na čelo ali lice."
+      ]
+    },
+    {
+      act:"4", eyebrow:"4. stopnja · 6", title:"Vročica", sub:"Senzualno, poželenje, dotik.",
+      questions:[
         "Kateri moj dotik te najbolj prevzame — in kje si ga zdaj najbolj želiš?",
         "Se spomniš najine prve noči? Kaj ti je najbolj ostalo v spominu?",
-        "Kaj bi si nocoj želela, da ti počasi naredim?",
         "Z eno besedo: kako se počutiš, ko te objamem od zadaj?",
-        "Zapri oči … kam naj te poljubim najprej?"
+        "Zapri oči … kam naj te poljubim najprej?",
+        "Kaj te bolj vzburi — pričakovanje ali presenečenje?",
+        "Opiši mi svoj najljubši način, kako se prvič dotakneva nocoj.",
+        "Kateri del mojega telesa te najbolj mika, da bi ga raziskala?",
+        "Poljubi me nekam, kamor me ponavadi ne poljubiš.",
+        "Kaj ti med predigro najbolj razvname poželenje?",
+        "Šepni mi eno stvar, ki bi jo rada, da ti nocoj naredim počasi.",
+        "Kje se rada dotakneš mene, pa mi tega ne poveš dovolj pogosto?",
+        "Kaj te hitreje spravi v razpoloženje — besede, dotik ali pogled?",
+        "Nežno in počasi, ali strastno in nepotrpežljivo?",
+        "Kaj bi rada, da nosim (ali ne nosim), ko sva naslednjič sama?"
+      ],
+      actions:[
+        "Poljub na vrat, ki traja tri sekunde.",
+        "Nežno preriši partnerjev hrbet s prsti.",
+        "Šepni, kaj ti je najbolj všeč pri njem/njej nocoj.",
+        "Zapri partnerju oči in ga poljubi presenečeno.",
+        "Boža partnerjevo roko od zapestja navzgor.",
+        "Prisloni čelo ob čelo za deset globokih dihov."
+      ]
+    },
+    {
+      act:"5", eyebrow:"5. stopnja · 6", title:"Brez zavor", sub:"Odkrito in eksplicitno, a okusno.",
+      questions:[
+        "Povej mi natančno, kje si zdaj najbolj želiš moje ustnice.",
+        "Katera fantazija o naju te v zadnjem času najpogosteje obišče?",
+        "Kaj bi rada, da ti počnem dlje kot ponavadi?",
+        "Pokaži mi z roko, kje si me nocoj najbolj želiš.",
+        "Kateri ritem ali način te najbolj vzame — in zakaj?",
+        "Kaj bi rada poskusila nocoj, česar še nisva?",
+        "Opiši mi po korakih, kako v tvoji glavi izgleda nocojšnji večer.",
+        "Katere besede od mene te takoj še bolj vžgejo?",
+        "Kje na sebi si želiš, da te dražim najdlje?",
+        "Povej mi brez sramu: kaj naj naredim ta trenutek?",
+        "Katero potezo iz najinih prejšnjih noči si želiš ponoviti nocoj?",
+        "Prevzemi vodenje — reci mi, kaj naj naredim naslednje.",
+        "Kaj si želiš šepetati meni, ko sva sredi strasti?",
+        "Kaj si želiš, pa si mi še nisi upala povedati? Zdaj je čas."
+      ],
+      actions:[
+        "Poljubi partnerja tam, kamor pokaže.",
+        "Za eno minuto prevzameš vodenje ti.",
+        "Odstrani en kos oblačila po lastni izbiri.",
+        "Šepni partnerju, kaj si zdaj želiš.",
+        "Nežno poljubi ali ugrizni vrat.",
+        "Sedi partnerju v naročje in ga poglej v oči."
+      ]
+    },
+    {
+      act:"6", eyebrow:"6. stopnja · 6", title:"Brez meja", sub:"Skrite želje, izrečene na glas.",
+      questions:[
+        "Katero fantazijo si mi še nikoli nisi upala povedati — nocoj jo izreci na glas.",
+        "Če bi nocoj veljalo prav vse, kaj bi bilo prvo, kar bi zahtevala od mene?",
+        "Katero vlogo ali igro bi rada, da nocoj odigrava?",
+        "Kdo od naju naj prevzame nadzor — in kako daleč naj gre?",
+        "Katero mejo bi rada nocoj skupaj premakla?",
+        "Opiši mi prizor svojih sanj do zadnje podrobnosti.",
+        "Kaj te mika, da bi nocoj prvič vpeljala v najino igro?",
+        "Kje drugje kot v spalnici si me želiš nocoj?",
+        "Katero drzno besedo ali ukaz bi rada, da ti šepnem na uho?",
+        "Kaj naj ti nocoj prepovem — in kaj ukažem?",
+        "Katera tvoja skrita želja bi me najbolj presenetila?",
+        "Za nocoj ni pravil: povej mi eno stvar, ki jo hočeš, brez pojasnil.",
+        "Prevzemi popolno vodenje — reci mi natanko, kaj naj naredim naslednje.",
+        "Popolnoma mi zaupaj: reci mi, kam naj naju nocoj popeljem."
+      ],
+      actions:[
+        "Zaveži partnerju oči za naslednjo karto.",
+        "Prevzemi popoln nadzor za pet minut.",
+        "Izpolni eno partnerjevo željo — brez vprašanj.",
+        "Preseli večer v drug prostor.",
+        "Šepni ukaz in poglej, ali te partner uboga.",
+        "Zamenjajta vlogi: kdor je vodil, zdaj sledi."
       ]
     }
   ];
 
   const body = document.body;
   const topEl = document.getElementById("top");
-  const screens = {
-    intro: document.getElementById("intro"),
-    act: document.getElementById("act"),
-    done: document.getElementById("done")
-  };
-  const cardsEl = document.getElementById("cards");
+  const screens = { intro: document.getElementById("intro"), act: document.getElementById("act"), done: document.getElementById("done") };
   const actEyebrow = document.getElementById("actEyebrow");
   const actTitle = document.getElementById("actTitle");
   const actSub = document.getElementById("actSub");
   const dots = [...document.querySelectorAll(".dot")];
-  const backBtn = document.getElementById("backBtn");
-  const nextBtn = document.getElementById("nextBtn");
+  const turnEl = document.getElementById("turn");
+  const qcard = document.getElementById("qcard");
+  const qtext = document.getElementById("qtext");
+  const actionEl = document.getElementById("action");
+  const actionText = document.getElementById("actionText");
+  const diceBtn = document.getElementById("diceBtn");
+  const actionBtn = document.getElementById("actionBtn");
 
-  let current = 0;
+  let names = ["Prvi", "Druga"];
+  let stage = 0;
+  let askerIdx = 0;
+  let used = [];
 
   function show(name) {
     Object.values(screens).forEach(s => s.classList.remove("on"));
@@ -397,68 +381,78 @@
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  function renderAct(i) {
-    const data = ACTS[i];
-    body.dataset.act = data.act;
-    actEyebrow.textContent = data.eyebrow;
-    actTitle.textContent = data.title;
-    actSub.textContent = data.sub;
+  function loadStage(i) {
+    stage = i;
+    const s = STAGES[i];
+    body.dataset.act = s.act;
+    actEyebrow.textContent = s.eyebrow;
+    actTitle.textContent = s.title;
+    actSub.textContent = s.sub;
     dots.forEach((d, idx) => d.classList.toggle("active", idx === i));
+    used = [];
+    qtext.className = "qtext qplaceholder";
+    qtext.textContent = "Vrzi kocko za prvo vprašanje.";
+    actionEl.classList.remove("show");
+    const hasActions = !!s.actions;
+    actionBtn.hidden = !hasActions;
+    updateTurn();
+  }
 
-    cardsEl.innerHTML = "";
-    data.cards.forEach((text, idx) => {
-      const btn = document.createElement("button");
-      btn.className = "card";
-      btn.setAttribute("aria-label", "Karta " + (idx + 1) + ", odkrij vprašanje");
-      btn.innerHTML =
-        '<div class="card-inner">' +
-          '<div class="face face-back">' +
-            '<span class="card-no">' + (idx + 1) + '</span>' +
-            '<span class="card-tap">obrni</span>' +
-          '</div>' +
-          '<div class="face face-front">' +
-            '<span class="prompt">' + text + '</span>' +
-          '</div>' +
-        '</div>';
-      btn.addEventListener("click", () => btn.classList.toggle("flipped"));
-      cardsEl.appendChild(btn);
-    });
+  function updateTurn() {
+    turnEl.innerHTML = "Vpraša <b>" + names[askerIdx] + "</b> &nbsp;·&nbsp; odgovarja " + names[1 - askerIdx];
+  }
 
-    backBtn.textContent = i === 0 ? "Nazaj na uvod" : "Prejšnji del";
-    nextBtn.textContent = i === ACTS.length - 1 ? "Zaključi" : "Naslednji del";
+  function drawQuestion() {
+    const pool = STAGES[stage].questions;
+    const remaining = pool.map((_, idx) => idx).filter(idx => !used.includes(idx));
+    if (remaining.length === 0) {
+      qtext.className = "qtext qplaceholder";
+      qtext.textContent = "Vsa vprašanja te stopnje so izžrebana. Pojdita naprej ›";
+      return;
+    }
+    const pick = remaining[Math.floor(Math.random() * remaining.length)];
+    used.push(pick);
+    qtext.className = "qtext";
+    qtext.textContent = pool[pick];
+    qcard.classList.remove("pulse"); void qcard.offsetWidth; qcard.classList.add("pulse");
+    updateTurn();
+    askerIdx = 1 - askerIdx;
+  }
+
+  function drawAction() {
+    const pool = STAGES[stage].actions;
+    if (!pool) return;
+    actionText.textContent = pool[Math.floor(Math.random() * pool.length)];
+    actionEl.classList.remove("show"); void actionEl.offsetWidth; actionEl.classList.add("show");
+  }
+
+  function rollAnim(btn) {
+    btn.classList.add("rolling");
+    setTimeout(() => btn.classList.remove("rolling"), 500);
   }
 
   document.getElementById("startBtn").addEventListener("click", () => {
-    current = 0;
-    renderAct(current);
+    const a = document.getElementById("nameA").value.trim();
+    const b = document.getElementById("nameB").value.trim();
+    names = [a || "Prvi", b || "Druga"];
+    askerIdx = 0;
+    loadStage(0);
     show("act");
   });
 
-  nextBtn.addEventListener("click", () => {
-    if (current < ACTS.length - 1) {
-      current++;
-      renderAct(current);
-      show("act");
-    } else {
-      body.dataset.act = "done";
-      show("done");
-    }
-  });
+  diceBtn.addEventListener("click", () => { rollAnim(diceBtn); drawQuestion(); });
+  actionBtn.addEventListener("click", () => { rollAnim(actionBtn); drawAction(); });
 
-  backBtn.addEventListener("click", () => {
-    if (current === 0) {
-      body.dataset.act = "intro";
-      show("intro");
-    } else {
-      current--;
-      renderAct(current);
-      show("act");
-    }
+  document.getElementById("nextBtn").addEventListener("click", () => {
+    if (stage < STAGES.length - 1) { loadStage(stage + 1); show("act"); }
+    else { body.dataset.act = "done"; show("done"); }
   });
-
+  document.getElementById("backBtn").addEventListener("click", () => {
+    if (stage === 0) { body.dataset.act = "intro"; show("intro"); }
+    else { loadStage(stage - 1); show("act"); }
+  });
   document.getElementById("restartBtn").addEventListener("click", () => {
-    body.dataset.act = "intro";
-    show("intro");
+    askerIdx = 0; body.dataset.act = "intro"; show("intro");
   });
 </script>
 </body>
