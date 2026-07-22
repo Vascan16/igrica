@@ -9,205 +9,209 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 <style>
   :root {
-    --bg-a: #241a2e; --bg-b: #191223;
-    --glow: rgba(232, 178, 124, 0.28);
-    --accent: #e8b27c;
-    --ink: #f3e9dc; --ink-soft: #cbb8ae;
-    --card: rgba(255, 255, 255, 0.05);
-    --card-line: rgba(243, 233, 220, 0.14);
-    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --bg-a:#241a2e; --bg-b:#191223;
+    --glow:rgba(232,178,124,0.28);
+    --accent:#e8b27c;
+    --ink:#f3e9dc; --ink-soft:#cbb8ae;
+    --card:rgba(255,255,255,0.05);
+    --card-line:rgba(243,233,220,0.14);
+    --ease:cubic-bezier(0.22,1,0.36,1);
   }
+  /* skupni stopnji */
   body[data-act="2"] { --bg-a:#1c1730; --bg-b:#14101f; --glow:rgba(224,160,168,0.26); --accent:#e0a0a8; }
-  body[data-act="3"] { --bg-a:#201033; --bg-b:#160a24; --glow:rgba(214,140,200,0.28); --accent:#d98cc8; }
-  body[data-act="4"] { --bg-a:#2a0f1c; --bg-b:#180712; --glow:rgba(236,128,144,0.30); --accent:#ec8090; }
-  body[data-act="5"] { --bg-a:#260710; --bg-b:#15040a; --glow:rgba(240,96,122,0.32); --accent:#f0607a; }
-  body[data-act="6"] { --bg-a:#1e040a; --bg-b:#100206; --glow:rgba(255,90,110,0.34); --accent:#ff6478; }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { min-height: 100%; }
+  /* POT OGENJ */
+  body[data-path="fire"][data-act="3"] { --bg-a:#201033; --bg-b:#160a24; --glow:rgba(214,140,200,0.28); --accent:#d98cc8; }
+  body[data-path="fire"][data-act="4"] { --bg-a:#2a0f1c; --bg-b:#180712; --glow:rgba(236,128,144,0.30); --accent:#ec8090; }
+  body[data-path="fire"][data-act="5"] { --bg-a:#260710; --bg-b:#15040a; --glow:rgba(240,96,122,0.32); --accent:#f0607a; }
+  body[data-path="fire"][data-act="6"] { --bg-a:#1e040a; --bg-b:#100206; --glow:rgba(255,90,110,0.34); --accent:#ff6478; }
+
+  /* POT SIDRO */
+  body[data-path="anchor"][data-act="3"] { --bg-a:#10262e; --bg-b:#0a1a20; --glow:rgba(126,200,196,0.24); --accent:#7ec8c4; }
+  body[data-path="anchor"][data-act="4"] { --bg-a:#0e2a2c; --bg-b:#08191b; --glow:rgba(111,194,182,0.24); --accent:#6fc2b6; }
+  body[data-path="anchor"][data-act="5"] { --bg-a:#0c2a26; --bg-b:#071815; --glow:rgba(102,196,158,0.24); --accent:#66c49e; }
+  body[data-path="anchor"][data-act="6"] { --bg-a:#0a2620; --bg-b:#051612; --glow:rgba(87,197,140,0.26); --accent:#57c58c; }
+
+  /* POT IGRA */
+  body[data-path="play"][data-act="3"] { --bg-a:#2e2010; --bg-b:#1e1409; --glow:rgba(240,180,92,0.26); --accent:#f0b45c; }
+  body[data-path="play"][data-act="4"] { --bg-a:#33230e; --bg-b:#211607; --glow:rgba(245,169,74,0.26); --accent:#f5a94a; }
+  body[data-path="play"][data-act="5"] { --bg-a:#372208; --bg-b:#241505; --glow:rgba(255,160,48,0.28); --accent:#ffa030; }
+  body[data-path="play"][data-act="6"] { --bg-a:#3a2405; --bg-b:#261603; --glow:rgba(255,176,46,0.30); --accent:#ffb02e; }
+
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html, body { min-height:100%; }
   body {
-    font-family: "Inter", system-ui, sans-serif;
-    color: var(--ink);
+    font-family:"Inter", system-ui, sans-serif;
+    color:var(--ink);
     background:
       radial-gradient(120% 80% at 50% -8%, var(--glow), transparent 55%),
       linear-gradient(180deg, var(--bg-a), var(--bg-b) 70%);
-    background-attachment: fixed;
-    transition: background 1400ms var(--ease);
-    -webkit-font-smoothing: antialiased;
-    line-height: 1.55;
-    overflow-x: hidden;
+    background-attachment:fixed;
+    transition:background 1400ms var(--ease);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.55;
+    overflow-x:hidden;
   }
   .wrap {
-    max-width: 620px; margin: 0 auto;
-    padding: clamp(22px,5vw,44px) clamp(20px,5vw,34px) 32px;
-    min-height: 100vh; display: flex; flex-direction: column;
+    max-width:620px; margin:0 auto;
+    padding:clamp(22px,5vw,44px) clamp(20px,5vw,34px) 32px;
+    min-height:100vh; display:flex; flex-direction:column;
   }
 
-  /* ---------- header ---------- */
-  .top { display: flex; align-items: center; gap: 16px; padding-bottom: 20px; }
-  .candle { width: 24px; flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; }
+  /* header */
+  .top { display:flex; align-items:center; gap:16px; padding-bottom:20px; }
+  .candle { width:24px; flex:0 0 auto; display:flex; flex-direction:column; align-items:center; }
   .flame {
-    width: 12px; height: 20px;
-    border-radius: 50% 50% 46% 46% / 62% 62% 38% 38%;
-    background: radial-gradient(circle at 50% 70%, #fff6dd 0%, var(--accent) 45%, rgba(236,128,144,0.15) 80%, transparent 100%);
-    filter: drop-shadow(0 0 10px var(--accent));
-    transform-origin: 50% 90%; animation: flicker 2.6s ease-in-out infinite; margin-bottom: 3px;
+    width:12px; height:20px;
+    border-radius:50% 50% 46% 46% / 62% 62% 38% 38%;
+    background:radial-gradient(circle at 50% 70%, #fff6dd 0%, var(--accent) 45%, rgba(255,255,255,0.08) 80%, transparent 100%);
+    filter:drop-shadow(0 0 10px var(--accent));
+    transform-origin:50% 90%; animation:flicker 2.6s ease-in-out infinite; margin-bottom:3px;
   }
   .wax {
-    width: 14px; border-radius: 3px 3px 2px 2px;
-    background: linear-gradient(180deg, #f3e9dc, #d9c6a8 40%, #b89b78);
-    box-shadow: inset 0 4px 6px rgba(255,255,255,0.35);
-    height: 104px; transition: height 1200ms var(--ease);
+    width:14px; border-radius:3px 3px 2px 2px;
+    background:linear-gradient(180deg,#f3e9dc,#d9c6a8 40%,#b89b78);
+    box-shadow:inset 0 4px 6px rgba(255,255,255,0.35);
+    height:104px; transition:height 1200ms var(--ease);
   }
-  body[data-act="intro"] .flame, body[data-act="done"] .flame { animation: none; opacity: 0.9; }
+  body[data-act="intro"] .flame, body[data-act="done"] .flame { animation:none; opacity:0.9; }
   @keyframes flicker {
-    0%,100% { transform: rotate(-1.5deg) scaleY(1); opacity: 1; }
-    25% { transform: rotate(1.5deg) scaleY(1.06); opacity: 0.92; }
-    50% { transform: rotate(-1deg) scaleY(0.96); opacity: 1; }
-    75% { transform: rotate(1deg) scaleY(1.03); opacity: 0.95; }
+    0%,100% { transform:rotate(-1.5deg) scaleY(1); opacity:1; }
+    25% { transform:rotate(1.5deg) scaleY(1.06); opacity:0.92; }
+    50% { transform:rotate(-1deg) scaleY(0.96); opacity:1; }
+    75% { transform:rotate(1deg) scaleY(1.03); opacity:0.95; }
   }
-  .top-meta { flex: 1; min-width: 0; }
-  .eyebrow { font-size: 0.7rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
-  .act-title { font-family: "Fraunces", serif; font-weight: 400; font-size: clamp(1.4rem,5vw,1.9rem); line-height: 1.1; margin-top: 3px; }
-  .act-sub { color: var(--ink-soft); font-size: 0.9rem; font-style: italic; margin-top: 4px; font-family: "Fraunces", serif; }
+  .top-meta { flex:1; min-width:0; }
+  .eyebrow { font-size:0.7rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--accent); font-weight:500; }
+  .act-title { font-family:"Fraunces",serif; font-weight:400; font-size:clamp(1.4rem,5vw,1.9rem); line-height:1.1; margin-top:3px; }
+  .act-sub { color:var(--ink-soft); font-size:0.9rem; font-style:italic; margin-top:4px; font-family:"Fraunces",serif; }
 
-  /* ---------- screens ---------- */
-  .screen { display: none; flex: 1; flex-direction: column; }
-  .screen.on { display: flex; animation: rise 700ms var(--ease); }
-  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  /* screens */
+  .screen { display:none; flex:1; flex-direction:column; }
+  .screen.on { display:flex; animation:rise 700ms var(--ease); }
+  @keyframes rise { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
 
-  /* ---------- intro ---------- */
-  #intro { justify-content: center; text-align: center; gap: 18px; padding: 10px 0; }
-  .intro-eyebrow { font-size: 0.7rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--accent); }
-  .intro-title { font-family: "Fraunces", serif; font-weight: 300; font-size: clamp(2.8rem,12vw,4.6rem); line-height: 0.95; letter-spacing: -0.02em; }
-  .intro-title em { font-style: italic; font-weight: 400; }
-  .intro-lead { color: var(--ink-soft); font-size: 1rem; max-width: 40ch; margin: 0 auto; }
-
-  .names { display: flex; gap: 12px; max-width: 380px; margin: 0 auto; width: 100%; }
-  .field { flex: 1; text-align: left; }
-  .field label { font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); }
+  /* intro */
+  #intro { justify-content:center; text-align:center; gap:18px; padding:10px 0; }
+  .intro-eyebrow { font-size:0.7rem; letter-spacing:0.32em; text-transform:uppercase; color:var(--accent); }
+  .intro-title { font-family:"Fraunces",serif; font-weight:300; font-size:clamp(2.8rem,12vw,4.6rem); line-height:0.95; letter-spacing:-0.02em; }
+  .intro-title em { font-style:italic; font-weight:400; }
+  .intro-lead { color:var(--ink-soft); font-size:1rem; max-width:40ch; margin:0 auto; }
+  .names { display:flex; gap:12px; max-width:380px; margin:0 auto; width:100%; }
+  .field { flex:1; text-align:left; }
+  .field label { font-size:0.68rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-soft); }
   .field input {
-    width: 100%; margin-top: 6px; padding: 12px 14px;
-    background: var(--card); border: 1px solid var(--card-line); border-radius: 12px;
-    color: var(--ink); font: inherit; font-size: 1rem;
+    width:100%; margin-top:6px; padding:12px 14px;
+    background:var(--card); border:1px solid var(--card-line); border-radius:12px;
+    color:var(--ink); font:inherit; font-size:1rem;
   }
-  .field input:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
-
-  .block-label {
-    font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--ink-soft); text-align: left; max-width: 380px; margin: 4px auto -6px; width: 100%;
-  }
-  .levels { display: grid; gap: 8px; max-width: 380px; margin: 0 auto; width: 100%; }
-  .level {
-    display: flex; align-items: baseline; gap: 10px; text-align: left;
-    padding: 13px 16px; border-radius: 13px; cursor: pointer;
-    border: 1px solid var(--card-line); background: var(--card);
-    color: var(--ink); font: inherit;
-    transition: border-color 200ms, background 200ms;
-  }
-  .level:hover { border-color: var(--accent); }
-  .level.sel { border-color: var(--accent); background: rgba(255,255,255,0.09); }
-  .level b { font-weight: 600; font-size: 0.98rem; }
-  .level i { font-style: normal; color: var(--ink-soft); font-size: 0.8rem; margin-left: auto; }
-  .level:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
+  .field input:focus { outline:2px solid var(--accent); outline-offset:2px; }
   .toggle {
-    display: flex; align-items: center; justify-content: space-between; gap: 12px;
-    max-width: 380px; margin: 0 auto; width: 100%;
-    padding: 12px 16px; border-radius: 13px; cursor: pointer;
-    border: 1px solid var(--card-line); background: var(--card); color: var(--ink); font: inherit;
-    text-align: left; font-size: 0.92rem;
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    max-width:380px; margin:0 auto; width:100%;
+    padding:12px 16px; border-radius:13px; cursor:pointer;
+    border:1px solid var(--card-line); background:var(--card); color:var(--ink); font:inherit;
+    text-align:left; font-size:0.92rem;
   }
-  .toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-  .switch {
-    width: 42px; height: 24px; border-radius: 999px; flex: 0 0 auto;
-    background: rgba(255,255,255,0.14); position: relative; transition: background 240ms;
-  }
-  .switch::after {
-    content: ""; position: absolute; top: 3px; left: 3px;
-    width: 18px; height: 18px; border-radius: 50%; background: var(--ink);
-    transition: transform 240ms var(--ease);
-  }
-  .toggle.on .switch { background: var(--accent); }
-  .toggle.on .switch::after { transform: translateX(18px); }
+  .toggle:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+  .switch { width:42px; height:24px; border-radius:999px; flex:0 0 auto; background:rgba(255,255,255,0.14); position:relative; transition:background 240ms; }
+  .switch::after { content:""; position:absolute; top:3px; left:3px; width:18px; height:18px; border-radius:50%; background:var(--ink); transition:transform 240ms var(--ease); }
+  .toggle.on .switch { background:var(--accent); }
+  .toggle.on .switch::after { transform:translateX(18px); }
+  .intro-note { font-family:"Fraunces",serif; font-style:italic; opacity:0.85; font-size:0.95rem; }
 
-  .intro-note { font-family: "Fraunces", serif; font-style: italic; opacity: 0.85; font-size: 0.95rem; }
-
-  /* ---------- play ---------- */
-  #act { gap: 2px; }
-  .meta-row {
-    display: flex; align-items: center; justify-content: space-between; gap: 10px;
-    font-size: 0.8rem; color: var(--ink-soft); padding: 2px 2px 0;
-  }
-  .meta-row b { color: var(--accent); font-weight: 600; }
-  .counter { font-variant-numeric: tabular-nums; opacity: 0.8; flex: 0 0 auto; }
-
+  /* play */
+  #act { gap:2px; }
+  .meta-row { display:flex; align-items:center; justify-content:space-between; gap:10px; font-size:0.8rem; color:var(--ink-soft); padding:2px 2px 0; }
+  .meta-row b { color:var(--accent); font-weight:600; }
+  .counter { font-variant-numeric:tabular-nums; opacity:0.8; flex:0 0 auto; }
   .qcard {
-    background: var(--card); border: 1px solid var(--card-line); border-radius: 20px;
-    padding: 32px 24px; min-height: 200px; margin-top: 10px;
-    display: flex; align-items: center; justify-content: center; text-align: center;
-    box-shadow: 0 14px 40px rgba(0,0,0,0.3);
+    background:var(--card); border:1px solid var(--card-line); border-radius:20px;
+    padding:32px 24px; min-height:200px; margin-top:10px;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    box-shadow:0 14px 40px rgba(0,0,0,0.3);
   }
-  .qcard.pulse { animation: pop 380ms var(--ease); }
-  @keyframes pop { 0% { transform: scale(0.97); opacity: 0.5; } 100% { transform: scale(1); opacity: 1; } }
-  .qtext { font-family: "Fraunces", serif; font-size: clamp(1.18rem,4.5vw,1.5rem); line-height: 1.35; }
-  .qplaceholder { color: var(--ink-soft); font-style: italic; }
-
-  .action {
-    margin-top: 10px; border: 1px dashed var(--accent); border-radius: 14px;
-    padding: 13px 18px; text-align: center; background: rgba(255,255,255,0.03); display: none;
-  }
-  .action.show { display: block; animation: pop 380ms var(--ease); }
-  .action span { font-size: 0.66rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 4px; }
-  .action p { font-family: "Fraunces", serif; font-size: 1.02rem; }
-
-  .rolls { display: flex; gap: 9px; margin-top: 14px; }
+  .qcard.pulse { animation:pop 380ms var(--ease); }
+  @keyframes pop { 0% { transform:scale(0.97); opacity:0.5; } 100% { transform:scale(1); opacity:1; } }
+  .qtext { font-family:"Fraunces",serif; font-size:clamp(1.18rem,4.5vw,1.5rem); line-height:1.35; }
+  .qplaceholder { color:var(--ink-soft); font-style:italic; }
+  .action { margin-top:10px; border:1px dashed var(--accent); border-radius:14px; padding:13px 18px; text-align:center; background:rgba(255,255,255,0.03); display:none; }
+  .action.show { display:block; animation:pop 380ms var(--ease); }
+  .action span { font-size:0.66rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--accent); display:block; margin-bottom:4px; }
+  .action p { font-family:"Fraunces",serif; font-size:1.02rem; }
+  .rolls { display:flex; gap:9px; margin-top:14px; }
   .btn {
-    font: inherit; font-weight: 500; cursor: pointer; border-radius: 999px;
-    padding: 14px 20px; border: 1px solid var(--card-line); background: transparent; color: var(--ink);
-    transition: transform 180ms var(--ease), background 180ms, border-color 180ms, opacity 180ms;
+    font:inherit; font-weight:500; cursor:pointer; border-radius:999px;
+    padding:14px 20px; border:1px solid var(--card-line); background:transparent; color:var(--ink);
+    transition:transform 180ms var(--ease), background 180ms, border-color 180ms, opacity 180ms;
   }
-  .btn:hover { transform: translateY(-2px); }
-  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-  .btn:disabled { opacity: 0.4; cursor: default; transform: none; }
-  .btn-primary { background: var(--accent); border-color: var(--accent); color: #1a0a10; font-weight: 600; }
-  .btn-grow { flex: 1; }
-  .btn-dice .die { display: inline-block; transition: transform 500ms var(--ease); }
-  .btn-dice.rolling .die { transform: rotate(360deg) scale(1.3); }
-  .btn-ghost { color: var(--ink-soft); }
-  .btn-ghost:hover { color: var(--ink); border-color: var(--accent); }
-  .btn-small { padding: 11px 18px; font-size: 0.9rem; }
+  .btn:hover { transform:translateY(-2px); }
+  .btn:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+  .btn:disabled { opacity:0.4; cursor:default; transform:none; }
+  .btn-primary { background:var(--accent); border-color:var(--accent); color:#170a10; font-weight:600; }
+  .btn-grow { flex:1; }
+  .btn-dice .die { display:inline-block; transition:transform 500ms var(--ease); }
+  .btn-dice.rolling .die { transform:rotate(360deg) scale(1.3); }
+  .btn-ghost { color:var(--ink-soft); }
+  .btn-ghost:hover { color:var(--ink); border-color:var(--accent); }
+  .btn-small { padding:11px 18px; font-size:0.9rem; }
+  .skip-row { display:flex; justify-content:center; margin-top:10px; }
+  .nav { margin-top:auto; padding-top:22px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .dots { display:flex; gap:7px; }
+  .dot { width:7px; height:7px; border-radius:50%; background:var(--card-line); transition:background 400ms, transform 400ms; }
+  .dot.active { background:var(--accent); transform:scale(1.4); }
 
-  .skip-row { display: flex; justify-content: center; margin-top: 10px; }
-
-  .nav { margin-top: auto; padding-top: 22px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-  .dots { display: flex; gap: 7px; }
-  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--card-line); transition: background 400ms, transform 400ms; }
-  .dot.active { background: var(--accent); transform: scale(1.4); }
-
-  /* ---------- gate ---------- */
-  #gate { justify-content: center; text-align: center; gap: 20px; }
-  .gate-eyebrow { font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); }
-  .gate-title { font-family: "Fraunces", serif; font-weight: 300; font-size: clamp(2rem,8vw,3rem); line-height: 1.05; }
-  .gate-title em { font-style: italic; }
-  .gate-sub { color: var(--ink-soft); font-size: 1rem; max-width: 36ch; margin: 0 auto; }
-  .gate-btns { display: flex; flex-direction: column; gap: 10px; max-width: 320px; margin: 4px auto 0; width: 100%; }
-
-  /* ---------- done ---------- */
-  #done { justify-content: center; text-align: center; gap: 18px; }
-  .done-title { font-family: "Fraunces", serif; font-weight: 300; font-size: clamp(2.1rem,9vw,3.3rem); line-height: 1; }
-  .done-title em { font-style: italic; }
-  .done-sub { color: var(--ink-soft); font-size: 1rem; max-width: 38ch; margin: 0 auto; }
-
-  .safeword {
-    text-align: center; color: var(--ink-soft); opacity: 0.45;
-    font-size: 0.74rem; line-height: 1.5; padding-top: 26px; font-style: italic;
+  /* crossroads */
+  #cross { justify-content:center; text-align:center; gap:16px; }
+  .cross-title { font-family:"Fraunces",serif; font-weight:300; font-size:clamp(2rem,8vw,2.9rem); line-height:1.05; }
+  .cross-title em { font-style:italic; }
+  .cross-sub { color:var(--ink-soft); font-size:0.98rem; max-width:36ch; margin:0 auto; }
+  .paths { display:grid; gap:11px; max-width:400px; margin:6px auto 0; width:100%; }
+  .path {
+    display:flex; align-items:flex-start; gap:14px; text-align:left;
+    padding:16px 18px; border-radius:16px; cursor:pointer;
+    border:1px solid var(--card-line); background:var(--card); color:var(--ink); font:inherit;
+    transition:border-color 200ms, background 200ms, transform 180ms var(--ease);
   }
+  .path:hover { border-color:var(--accent); transform:translateY(-2px); }
+  .path:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+  .path-ico { font-size:1.5rem; line-height:1.2; flex:0 0 auto; }
+  .path b { display:block; font-family:"Fraunces",serif; font-weight:500; font-size:1.14rem; }
+  .path i { font-style:normal; color:var(--ink-soft); font-size:0.86rem; display:block; margin-top:2px; }
 
-  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+  /* intensity */
+  #heat { justify-content:center; text-align:center; gap:16px; }
+  .levels { display:grid; gap:8px; max-width:380px; margin:4px auto 0; width:100%; }
+  .level {
+    display:flex; align-items:baseline; gap:10px; text-align:left;
+    padding:14px 17px; border-radius:14px; cursor:pointer;
+    border:1px solid var(--card-line); background:var(--card); color:var(--ink); font:inherit;
+    transition:border-color 200ms, background 200ms, transform 180ms var(--ease);
+  }
+  .level:hover { border-color:var(--accent); transform:translateY(-2px); }
+  .level:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+  .level b { font-weight:600; font-size:1rem; }
+  .level i { font-style:normal; color:var(--ink-soft); font-size:0.82rem; margin-left:auto; }
+
+  /* gate */
+  #gate { justify-content:center; text-align:center; gap:18px; }
+  .gate-eyebrow { font-size:0.68rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--accent); }
+  .gate-title { font-family:"Fraunces",serif; font-weight:300; font-size:clamp(2rem,8vw,3rem); line-height:1.05; }
+  .gate-sub { color:var(--ink-soft); font-size:1rem; max-width:36ch; margin:0 auto; }
+  .gate-btns { display:flex; flex-direction:column; gap:10px; max-width:320px; margin:4px auto 0; width:100%; }
+
+  /* done */
+  #done { justify-content:center; text-align:center; gap:18px; }
+  .done-title { font-family:"Fraunces",serif; font-weight:300; font-size:clamp(2.1rem,9vw,3.3rem); line-height:1; }
+  .done-title em { font-style:italic; }
+  .done-sub { color:var(--ink-soft); font-size:1rem; max-width:38ch; margin:0 auto; }
+
+  .safeword { text-align:center; color:var(--ink-soft); opacity:0.45; font-size:0.74rem; line-height:1.5; padding-top:26px; font-style:italic; }
+
+  @media (prefers-reduced-motion: reduce) { * { animation:none !important; transition:none !important; } }
 </style>
 </head>
-<body data-act="intro">
+<body data-act="intro" data-path="fire">
   <div class="wrap">
 
     <header class="top" id="top" hidden>
@@ -219,63 +223,80 @@
       </div>
     </header>
 
-    <!-- ============ INTRO ============ -->
+    <!-- INTRO -->
     <section class="screen on" id="intro">
       <div class="intro-eyebrow">Za naju</div>
       <h1 class="intro-title">Najin<br /><em>večer</em></h1>
-      <p class="intro-lead">Vprašanja žrebeta s kocko, izmenično. Kako daleč gre večer, izbereta sama — in lahko se kadar koli ustavita.</p>
-
+      <p class="intro-lead">Vprašanja žrebeta s kocko, izmenično. Po drugi stopnji izbereta pot — in kadar koli se lahko ustavita.</p>
       <div class="names">
         <div class="field"><label>Prvi</label><input id="nameA" type="text" placeholder="Ime" maxlength="16" /></div>
         <div class="field"><label>Druga</label><input id="nameB" type="text" placeholder="Ime" maxlength="16" /></div>
       </div>
-
-      <div class="block-label">Kakšen večer si želita?</div>
-      <div class="levels" id="levels">
-        <button class="level" data-max="2"><b>Nežen</b><i>3 stopnje</i></button>
-        <button class="level sel" data-max="3"><b>Topel</b><i>4 stopnje</i></button>
-        <button class="level" data-max="4"><b>Vroč</b><i>5 stopenj</i></button>
-        <button class="level" data-max="5"><b>Brez meja</b><i>6 stopenj</i></button>
-      </div>
-
       <button class="toggle" id="qOnly" aria-pressed="false">
         <span>Samo vprašanja, brez akcij</span><span class="switch"></span>
       </button>
-
       <p class="intro-note">Brez telefonov, brez naglice. Samo midva.</p>
       <div><button class="btn btn-primary" id="startBtn" style="padding:14px 34px;">Prižgi svečo</button></div>
     </section>
 
-    <!-- ============ PLAY ============ -->
+    <!-- PLAY -->
     <section class="screen" id="act">
       <div class="meta-row">
         <span id="turn"></span>
         <span class="counter" id="counter"></span>
       </div>
-
       <div class="qcard" id="qcard"><span class="qtext qplaceholder" id="qtext">Vrzi kocko za prvo vprašanje.</span></div>
-
-      <div class="action" id="action"><span id="actionLabel">Akcijska kocka</span><p id="actionText"></p></div>
-
+      <div class="action" id="action"><span id="actionLabel">Akcija</span><p id="actionText"></p></div>
       <div class="rolls">
         <button class="btn btn-primary btn-grow btn-dice" id="diceBtn"><span class="die">🎲</span> Vprašanje</button>
         <button class="btn btn-grow btn-dice" id="actionBtn" hidden><span class="die">🔥</span> Akcija</button>
       </div>
-
-      <div class="skip-row">
-        <button class="btn btn-ghost btn-small" id="skipBtn" disabled>Preskoči to karto</button>
-      </div>
-
+      <div class="skip-row"><button class="btn btn-ghost btn-small" id="skipBtn" disabled>Preskoči to karto</button></div>
       <nav class="nav">
         <button class="btn btn-ghost btn-small" id="backBtn">‹ Nazaj</button>
         <div class="dots" id="dots" aria-hidden="true"></div>
         <button class="btn btn-ghost btn-small" id="nextBtn">Naprej ›</button>
       </nav>
-
       <p class="safeword">Kadar koli lahko rečeta „dovolj za nocoj“ — večer se ne konča, samo umiri se.</p>
     </section>
 
-    <!-- ============ GATE ============ -->
+    <!-- CROSSROADS -->
+    <section class="screen" id="cross">
+      <div class="gate-eyebrow">Razpotje</div>
+      <h2 class="cross-title">Kam gre<br /><em>nocojšnji večer?</em></h2>
+      <p class="cross-sub">Izbereta skupaj. Pot lahko kasneje tudi zamenjata.</p>
+      <div class="paths">
+        <button class="path" data-path="fire">
+          <span class="path-ico">🔥</span>
+          <span><b>Ogenj</b><i>Flirt, poželenje in strast. Vidva odločita, kako daleč.</i></span>
+        </button>
+        <button class="path" data-path="anchor">
+          <span class="path-ico">⚓</span>
+          <span><b>Sidro</b><i>Od kod sva prišla, kako se vidiva, kam greva. Konča se z obljubo.</i></span>
+        </button>
+        <button class="path" data-path="play">
+          <span class="path-ico">🎯</span>
+          <span><b>Igra</b><i>Ugibanja, stave in izzivi. Za večer, ki se konča v smehu.</i></span>
+        </button>
+      </div>
+      <p class="safeword">Vse tri poti so enako vredne. Izberita tisto, ki se nocoj prileže.</p>
+    </section>
+
+    <!-- INTENSITY (samo Ogenj) -->
+    <section class="screen" id="heat">
+      <div class="gate-eyebrow">Pot ognja</div>
+      <h2 class="cross-title">Kako daleč<br /><em>nocoj?</em></h2>
+      <p class="cross-sub">Določita zgornjo mejo večera. Do nje ni treba priti — ustavita se, kadar hočeta.</p>
+      <div class="levels">
+        <button class="level" data-max="2"><b>Iskrice</b><i>1 stopnja</i></button>
+        <button class="level" data-max="3"><b>Do vročice</b><i>2 stopnji</i></button>
+        <button class="level" data-max="4"><b>Brez zavor</b><i>3 stopnje</i></button>
+        <button class="level" data-max="5"><b>Brez meja</b><i>4 stopnje</i></button>
+      </div>
+      <p class="safeword">Vsaka stopnja se odklene posebej — nikamor ne skočita brez soglasja.</p>
+    </section>
+
+    <!-- GATE -->
     <section class="screen" id="gate">
       <div class="gate-eyebrow" id="gateEyebrow"></div>
       <h2 class="gate-title" id="gateTitle"></h2>
@@ -283,372 +304,667 @@
       <div class="gate-btns">
         <button class="btn btn-primary" id="gateGo">Greva naprej</button>
         <button class="btn btn-ghost" id="gateStay">Ostaniva tu</button>
+        <button class="btn btn-ghost btn-small" id="gateSwap">Zamenjaj pot</button>
       </div>
       <p class="safeword">Naprej gresta samo, če želita oba.</p>
     </section>
 
-    <!-- ============ DONE ============ -->
+    <!-- DONE -->
     <section class="screen" id="done">
-      <h2 class="done-title">Konec kart,<br /><em>ne pa večera.</em></h2>
-      <p class="done-sub">Sveča naj dogori do konca. Kar sledi, ni več napisano tukaj.</p>
+      <h2 class="done-title" id="doneTitle"></h2>
+      <p class="done-sub" id="doneSub"></p>
       <div><button class="btn btn-ghost" id="restartBtn" style="padding:13px 28px;">Začni znova</button></div>
     </section>
 
   </div>
 
 <script>
-  /* ================= VSEBINA ================= */
-  const STAGES = [
-    {
-      act:"1", title:"Za ogrevanje", sub:"Lahkotno, kot bi se spet spoznavala.",
-      gate:"Prvi del je za sprostitev — nič težkega, samo midva.",
-      questions:[
-        "Kaj je bil najlepši drobec tvojega dneva?",
-        "Če bi jutri lahko zbežala kamorkoli za en dan, kam bi šla — in bi me vzela s sabo?",
-        "Ob katerem najinem skupnem spominu se še vedno od srca nasmejiš?",
-        "Za kaj si mi ta teden hvaležna, pa mi tega še nisi povedala?",
-        "Katera pesem ali okus te danes spomni name?",
-        "Kaj bi si nocoj najbolj želela — kozarec vina, sprehod ali samo tišino ob meni?",
-        "Katero stvar sva nazadnje naredila prvič skupaj?",
-        "Če bi imela nocoj tri ure čisto zase, kako bi jih porabila?",
-        "Katera moja navada te vedno nasmeji?",
-        "Kaj si si kot otrok predstavljala, da boš počela pri teh letih?",
-        "Kateri najin „notranji vic“ ti pride prvi na misel?",
-        "Kaj bi rada počela z mano več, pa nama v vsakdanu zmanjka časa?"
-      ]
-    },
-    {
-      act:"2", title:"Bliže", sub:"Zdaj pa iskreno in nežno.",
-      gate:"Naslednja stopnja gre globlje — več iskrenosti, več srca.",
-      questions:[
-        "Kdaj si se ob meni nazadnje počutila zares varno?",
-        "Kateri najin trenutek bi si želela podoživeti točno takšnega, kot je bil?",
-        "Kaj pri meni ceniš, pa se bojiš, da mi tega premalo pokažeš?",
-        "Česa se v zadnjem času tiho bojiš — in kako ti lahko stojim ob strani?",
-        "Kaj ti pomenim, kar težko ubesediš?",
-        "Kdaj si se zadnjič na novo zaljubila vame — ob čem?",
-        "Kaj sem naredil, kar ti je ostalo v srcu, jaz pa morda niti ne vem?",
-        "Kakšno obljubo za prihodnje leto bi mi rada dala?",
-        "Kdaj se ob meni počutiš najbolj razumljeno?",
-        "Katero svojo plat mi pokažeš samo takrat, ko sva sama?",
-        "Kaj bi rada, da vem o tebi, pa ti tega ni lahko povedati?",
-        "Kako izgleda tvoja predstava popolnega večera v dvoje?",
-        "Bi rada kaj razčistila ali mi kaj povedala z olajšanjem?"
-      ]
-    },
-    {
-      act:"3", title:"Iskrice", sub:"Flirt in prva rahla bližina.",
-      gate:"Zdaj postane bolj igrivo — pogledi, komplimenti, prvi dotiki.",
-      questions:[
-        "Kaj mi prvo pade v oči, ko te pogledam čez sobo?",
-        "Kdaj si se danes ujela, da misliš name?",
-        "Katera moja poteza ti vedno pospeši utrip?",
-        "Z eno besedo: kako se počutiš, ko te primem za roko?",
-        "Kateri kompliment bi rada slišala od mene prav zdaj?",
-        "Se spomniš najinega prvega poljuba? Kje sva bila?",
-        "Kaj te je takrat na meni najbolj pritegnilo?",
-        "Približaj se in mi šepni, kaj ti je najbolj všeč pri meni.",
-        "Ob katerem delu dneva si najbolj želiš mojega objema?",
-        "Poglej me v oči deset sekund brez besed — kaj si mislila?",
-        "Kateri moj vonj ali gib povezuješ z željo?",
-        "Kam bi rada, da te zdaj čisto rahlo pobožam?",
-        "Kdaj se počutiš najbolj zaželeno?"
-      ],
-      actions:[
-        "Poglejta se v oči 15 sekund brez besed.",
-        "Primi partnerja za roko in mu nežno preriši dlan.",
-        "Šepni partnerju kompliment na uho.",
-        "Objem, ki traja, dokler oba ne izdihneta.",
-        "Odmakni partnerju las z obraza in ga poglej.",
-        "Poljub na čelo ali lice."
-      ]
-    },
-    {
-      act:"4", title:"Vročica", sub:"Senzualno, poželenje, dotik.",
-      gate:"Naslednja stopnja postane senzualna — več dotika, več poželenja.",
-      questions:[
-        "Kateri moj dotik te najbolj prevzame — in kje si ga zdaj najbolj želiš?",
-        "Se spomniš najine prve noči? Kaj ti je najbolj ostalo v spominu?",
-        "Z eno besedo: kako se počutiš, ko te objamem od zadaj?",
-        "Zapri oči … kam naj te poljubim najprej?",
-        "Kaj te bolj vzburi — pričakovanje ali presenečenje?",
-        "Opiši mi svoj najljubši način, kako se prvič dotakneva nocoj.",
-        "Kateri del mojega telesa te najbolj mika, da bi ga raziskala?",
-        "Poljubi me nekam, kamor me ponavadi ne poljubiš.",
-        "Kaj ti med predigro najbolj razvname poželenje?",
-        "Šepni mi eno stvar, ki bi jo rada, da ti nocoj naredim počasi.",
-        "Kje se rada dotakneš mene, pa mi tega ne poveš dovolj pogosto?",
-        "Kaj te hitreje spravi v razpoloženje — besede, dotik ali pogled?",
-        "Nežno in počasi, ali strastno in nepotrpežljivo?",
-        "Kaj bi rada, da nosim (ali ne nosim), ko sva naslednjič sama?"
-      ],
-      actions:[
-        "Poljub na vrat, ki traja tri sekunde.",
-        "Nežno preriši partnerjev hrbet s prsti.",
-        "Šepni, kaj ti je najbolj všeč pri njem/njej nocoj.",
-        "Zapri partnerju oči in ga poljubi presenečeno.",
-        "Boža partnerjevo roko od zapestja navzgor.",
-        "Prisloni čelo ob čelo za deset globokih dihov."
-      ]
-    },
-    {
-      act:"5", title:"Brez zavor", sub:"Odkrito in eksplicitno, a okusno.",
-      gate:"Zdaj gre zares odkrito. Naprej samo, če to želita oba.",
-      questions:[
-        "Povej mi natančno, kje si zdaj najbolj želiš moje ustnice.",
-        "Katera fantazija o naju te v zadnjem času najpogosteje obišče?",
-        "Kaj bi rada, da ti počnem dlje kot ponavadi?",
-        "Pokaži mi z roko, kje si me nocoj najbolj želiš.",
-        "Kateri ritem ali način te najbolj vzame — in zakaj?",
-        "Kaj bi rada poskusila nocoj, česar še nisva?",
-        "Opiši mi po korakih, kako v tvoji glavi izgleda nocojšnji večer.",
-        "Katere besede od mene te takoj še bolj vžgejo?",
-        "Kje na sebi si želiš, da te dražim najdlje?",
-        "Povej mi brez sramu: kaj naj naredim ta trenutek?",
-        "Katero potezo iz najinih prejšnjih noči si želiš ponoviti nocoj?",
-        "Prevzemi vodenje — reci mi, kaj naj naredim naslednje.",
-        "Kaj si želiš šepetati meni, ko sva sredi strasti?",
-        "Kaj si želiš, pa si mi še nisi upala povedati? Zdaj je čas."
-      ],
-      actions:[
-        "Poljubi partnerja tam, kamor pokaže.",
-        "Za eno minuto prevzameš vodenje ti.",
-        "Odstrani en kos oblačila po lastni izbiri.",
-        "Šepni partnerju, kaj si zdaj želiš.",
-        "Nežno poljubi ali ugrizni vrat.",
-        "Sedi partnerju v naročje in ga poglej v oči."
-      ]
-    },
-    {
-      act:"6", title:"Brez meja", sub:"Skrite želje, izrečene na glas.",
-      gate:"Zadnja stopnja. Tu ni več zadržkov — vstopita samo skupaj.",
-      questions:[
-        "Katero fantazijo si mi še nikoli nisi upala povedati — nocoj jo izreci na glas.",
-        "Če bi nocoj veljalo prav vse, kaj bi bilo prvo, kar bi zahtevala od mene?",
-        "Katero vlogo ali igro bi rada, da nocoj odigrava?",
-        "Kdo od naju naj prevzame nadzor — in kako daleč naj gre?",
-        "Katero mejo bi rada nocoj skupaj premakla?",
-        "Opiši mi prizor svojih sanj do zadnje podrobnosti.",
-        "Kaj te mika, da bi nocoj prvič vpeljala v najino igro?",
-        "Kje drugje kot v spalnici si me želiš nocoj?",
-        "Katero drzno besedo bi rada, da ti šepnem na uho?",
-        "Kaj naj ti nocoj prepovem — in kaj ukažem?",
-        "Katera tvoja skrita želja bi me najbolj presenetila?",
-        "Za nocoj ni pravil: povej mi eno stvar, ki jo hočeš, brez pojasnil.",
-        "Česa nocoj nočeš — povej mi, da vem, kje je meja.",
-        "Popolnoma mi zaupaj: reci mi, kam naj naju nocoj popeljem."
-      ],
-      actions:[
-        "Zaveži partnerju oči za naslednjo karto.",
-        "Prevzemi popoln nadzor za pet minut.",
-        "Izpolni eno partnerjevo željo — brez vprašanj.",
-        "Preseli večer v drug prostor.",
-        "Šepni ukaz in poglej, ali te partner uboga.",
-        "Zamenjajta vlogi: kdor je vodil, zdaj sledi."
-      ]
-    }
-  ];
+/* ==================== SKUPNI STOPNJI ==================== */
+const COMMON = [
+  {
+    act:"1", title:"Za ogrevanje", sub:"Lahkotno, kot bi se spet spoznavala.",
+    gate:"Prvi del je za sprostitev — nič težkega, samo midva.",
+    questions:[
+      "Kaj je bil najlepši drobec tvojega dneva?",
+      "Če bi jutri lahko zbežala kamorkoli za en dan, kam bi šla — in bi me vzela s sabo?",
+      "Ob katerem najinem skupnem spominu se še vedno od srca nasmejiš?",
+      "Za kaj si mi ta teden hvaležna, pa mi tega še nisi povedala?",
+      "Katera pesem ali okus te danes spomni name?",
+      "Kaj bi si nocoj najbolj želela — kozarec vina, sprehod ali samo tišino ob meni?",
+      "Katero stvar sva nazadnje naredila prvič skupaj?",
+      "Če bi imela nocoj tri ure čisto zase, kako bi jih porabila?",
+      "Katera moja navada te vedno nasmeji?",
+      "Kaj si si kot otrok predstavljala, da boš počela pri teh letih?",
+      "Kateri najin „notranji vic“ ti pride prvi na misel?",
+      "Kaj bi rada počela z mano več, pa nama v vsakdanu zmanjka časa?"
+    ]
+  },
+  {
+    act:"2", title:"Bliže", sub:"Zdaj pa iskreno in nežno.",
+    gate:"Naslednja stopnja gre globlje — več iskrenosti, več srca.",
+    questions:[
+      "Kdaj si se ob meni nazadnje počutila zares varno?",
+      "Kateri najin trenutek bi si želela podoživeti točno takšnega, kot je bil?",
+      "Kaj pri meni ceniš, pa se bojiš, da mi tega premalo pokažeš?",
+      "Česa se v zadnjem času tiho bojiš — in kako ti lahko stojim ob strani?",
+      "Kaj ti pomenim, kar težko ubesediš?",
+      "Kdaj si se zadnjič na novo zaljubila vame — ob čem?",
+      "Kaj sem naredil, kar ti je ostalo v srcu, jaz pa morda niti ne vem?",
+      "Kakšno obljubo za prihodnje leto bi mi rada dala?",
+      "Kdaj se ob meni počutiš najbolj razumljeno?",
+      "Katero svojo plat mi pokažeš samo takrat, ko sva sama?",
+      "Kaj bi rada, da vem o tebi, pa ti tega ni lahko povedati?",
+      "Kako izgleda tvoja predstava popolnega večera v dvoje?",
+      "Bi rada kaj razčistila ali mi kaj povedala z olajšanjem?"
+    ]
+  }
+];
 
-  /* ================= ELEMENTI ================= */
-  const body = document.body;
-  const topEl = document.getElementById("top");
-  const waxEl = document.getElementById("wax");
-  const screens = {
-    intro: document.getElementById("intro"),
-    act:   document.getElementById("act"),
-    gate:  document.getElementById("gate"),
-    done:  document.getElementById("done")
-  };
-  const actEyebrow = document.getElementById("actEyebrow");
-  const actTitle   = document.getElementById("actTitle");
-  const actSub     = document.getElementById("actSub");
-  const dotsEl     = document.getElementById("dots");
-  const turnEl     = document.getElementById("turn");
-  const counterEl  = document.getElementById("counter");
-  const qcard      = document.getElementById("qcard");
-  const qtext      = document.getElementById("qtext");
-  const actionEl   = document.getElementById("action");
-  const actionText = document.getElementById("actionText");
-  const diceBtn    = document.getElementById("diceBtn");
-  const actionBtn  = document.getElementById("actionBtn");
-  const skipBtn    = document.getElementById("skipBtn");
-  const nextBtn    = document.getElementById("nextBtn");
-  const backBtn    = document.getElementById("backBtn");
-  const qOnlyBtn   = document.getElementById("qOnly");
+/* ==================== POTI ==================== */
+const PATHS = {
+  fire: {
+    name:"Ogenj", icon:"🔥", actionLabel:"Akcija", actionBtn:"Akcija",
+    done:["Konec kart,","ne pa večera."],
+    doneSub:"Sveča naj dogori do konca. Kar sledi, ni več napisano tukaj.",
+    stages:[
+      {
+        act:"3", title:"Iskrice", sub:"Flirt in prva rahla bližina.",
+        gate:"Zdaj postane bolj igrivo — pogledi, komplimenti, prvi dotiki.",
+        questions:[
+          "Kaj mi prvo pade v oči, ko te pogledam čez sobo?",
+          "Kdaj si se danes ujela, da misliš name?",
+          "Katera moja poteza ti vedno pospeši utrip?",
+          "Z eno besedo: kako se počutiš, ko te primem za roko?",
+          "Kateri kompliment bi rada slišala od mene prav zdaj?",
+          "Se spomniš najinega prvega poljuba? Kje sva bila?",
+          "Kaj te je takrat na meni najbolj pritegnilo?",
+          "Približaj se in mi šepni, kaj ti je najbolj všeč pri meni.",
+          "Ob katerem delu dneva si najbolj želiš mojega objema?",
+          "Poglej me v oči deset sekund brez besed — kaj si mislila?",
+          "Kateri moj vonj ali gib povezuješ z željo?",
+          "Kam bi rada, da te zdaj čisto rahlo pobožam?",
+          "Kdaj se počutiš najbolj zaželeno?"
+        ],
+        actions:[
+          "Poglejta se v oči 15 sekund brez besed.",
+          "Primi partnerja za roko in mu nežno preriši dlan.",
+          "Šepni partnerju kompliment na uho.",
+          "Objem, ki traja, dokler oba ne izdihneta.",
+          "Odmakni partnerju las z obraza in ga poglej.",
+          "Poljub na čelo ali lice."
+        ]
+      },
+      {
+        act:"4", title:"Vročica", sub:"Senzualno, poželenje, dotik.",
+        gate:"Naslednja stopnja postane senzualna — več dotika, več poželenja.",
+        questions:[
+          "Kateri moj dotik te najbolj prevzame — in kje si ga zdaj najbolj želiš?",
+          "Se spomniš najine prve noči? Kaj ti je najbolj ostalo v spominu?",
+          "Z eno besedo: kako se počutiš, ko te objamem od zadaj?",
+          "Zapri oči … kam naj te poljubim najprej?",
+          "Kaj te bolj vzburi — pričakovanje ali presenečenje?",
+          "Opiši mi svoj najljubši način, kako se prvič dotakneva nocoj.",
+          "Kateri del mojega telesa te najbolj mika, da bi ga raziskala?",
+          "Poljubi me nekam, kamor me ponavadi ne poljubiš.",
+          "Kaj ti med predigro najbolj razvname poželenje?",
+          "Šepni mi eno stvar, ki bi jo rada, da ti nocoj naredim počasi.",
+          "Kje se rada dotakneš mene, pa mi tega ne poveš dovolj pogosto?",
+          "Kaj te hitreje spravi v razpoloženje — besede, dotik ali pogled?",
+          "Nežno in počasi, ali strastno in nepotrpežljivo?",
+          "Kaj bi rada, da nosim (ali ne nosim), ko sva naslednjič sama?"
+        ],
+        actions:[
+          "Poljub na vrat, ki traja tri sekunde.",
+          "Nežno preriši partnerjev hrbet s prsti.",
+          "Šepni, kaj ti je najbolj všeč pri njem ali njej nocoj.",
+          "Zapri partnerju oči in ga poljubi presenečeno.",
+          "Boža partnerjevo roko od zapestja navzgor.",
+          "Prisloni čelo ob čelo za deset globokih dihov."
+        ]
+      },
+      {
+        act:"5", title:"Brez zavor", sub:"Odkrito in eksplicitno, a okusno.",
+        gate:"Zdaj gre zares odkrito. Naprej samo, če to želita oba.",
+        questions:[
+          "Povej mi natančno, kje si zdaj najbolj želiš moje ustnice.",
+          "Katera fantazija o naju te v zadnjem času najpogosteje obišče?",
+          "Kaj bi rada, da ti počnem dlje kot ponavadi?",
+          "Pokaži mi z roko, kje si me nocoj najbolj želiš.",
+          "Kateri ritem ali način te najbolj vzame — in zakaj?",
+          "Kaj bi rada poskusila nocoj, česar še nisva?",
+          "Opiši mi po korakih, kako v tvoji glavi izgleda nocojšnji večer.",
+          "Katere besede od mene te takoj še bolj vžgejo?",
+          "Kje na sebi si želiš, da te dražim najdlje?",
+          "Povej mi brez sramu: kaj naj naredim ta trenutek?",
+          "Katero potezo iz najinih prejšnjih noči si želiš ponoviti nocoj?",
+          "Prevzemi vodenje — reci mi, kaj naj naredim naslednje.",
+          "Kaj si želiš šepetati meni, ko sva sredi strasti?",
+          "Kaj si želiš, pa si mi še nisi upala povedati? Zdaj je čas."
+        ],
+        actions:[
+          "Poljubi partnerja tam, kamor pokaže.",
+          "Za eno minuto prevzameš vodenje ti.",
+          "Odstrani en kos oblačila po lastni izbiri.",
+          "Šepni partnerju, kaj si zdaj želiš.",
+          "Nežno poljubi ali ugrizni vrat.",
+          "Sedi partnerju v naročje in ga poglej v oči."
+        ]
+      },
+      {
+        act:"6", title:"Brez meja", sub:"Skrite želje, izrečene na glas.",
+        gate:"Zadnja stopnja. Tu ni več zadržkov — vstopita samo skupaj.",
+        questions:[
+          "Katero fantazijo si mi še nikoli nisi upala povedati — nocoj jo izreci na glas.",
+          "Če bi nocoj veljalo prav vse, kaj bi bilo prvo, kar bi zahtevala od mene?",
+          "Katero vlogo ali igro bi rada, da nocoj odigrava?",
+          "Kdo od naju naj prevzame nadzor — in kako daleč naj gre?",
+          "Katero mejo bi rada nocoj skupaj premakla?",
+          "Opiši mi prizor svojih sanj do zadnje podrobnosti.",
+          "Kaj te mika, da bi nocoj prvič vpeljala v najino igro?",
+          "Kje drugje kot v spalnici si me želiš nocoj?",
+          "Katero drzno besedo bi rada, da ti šepnem na uho?",
+          "Kaj naj ti nocoj prepovem — in kaj ukažem?",
+          "Katera tvoja skrita želja bi me najbolj presenetila?",
+          "Za nocoj ni pravil: povej mi eno stvar, ki jo hočeš, brez pojasnil.",
+          "Česa nocoj nočeš — povej mi, da vem, kje je meja.",
+          "Popolnoma mi zaupaj: reci mi, kam naj naju nocoj popeljem."
+        ],
+        actions:[
+          "Zaveži partnerju oči za naslednjo karto.",
+          "Prevzemi popoln nadzor za pet minut.",
+          "Izpolni eno partnerjevo željo — brez vprašanj.",
+          "Preseli večer v drug prostor.",
+          "Šepni ukaz in poglej, ali te partner uboga.",
+          "Zamenjajta vlogi: kdor je vodil, zdaj sledi."
+        ]
+      }
+    ]
+  },
 
-  /* ================= STANJE ================= */
-  let names = ["Prvi", "Druga"];
-  let maxStage = 3;        // indeks zadnje dovoljene stopnje
-  let onlyQuestions = false;
-  let stage = 0;
-  let askerIdx = 0;
-  let used = [];
-  let pendingStage = null; // stopnja, ki čaka za vrati
+  anchor: {
+    name:"Sidro", icon:"⚓", actionLabel:"Gesta", actionBtn:"Gesta",
+    done:["Sidro je spuščeno,","večer pa še traja."],
+    doneSub:"Kar sta si nocoj obljubila, velja tudi jutri zjutraj.",
+    stages:[
+      {
+        act:"3", title:"Korenine", sub:"Od kod sva prišla.",
+        gate:"Naslednja stopnja gre nazaj — k začetkom in temu, kar naju je oblikovalo.",
+        questions:[
+          "Kateri trenutek iz najinih začetkov ti je še vedno najbolj živ pred očmi?",
+          "Kdaj si prvič pomislila, da bi lahko ostala z mano?",
+          "Katera skupna preizkušnja naju je najbolj utrdila?",
+          "Kaj je bilo najboljše, kar sva naredila v prvem letu skupaj?",
+          "Če bi morala izbrati eno fotografijo, ki naju najbolje opiše, katera bi bila?",
+          "Kaj bi rekla sebi izpred desetih let o naju?",
+          "Katero navado ali izrek sva prevzela drug od drugega?",
+          "Kateri kraj je za naju najbolj „najin“?",
+          "Kaj je bila najboljša odločitev, ki sva jo sprejela skupaj?",
+          "Česa iz najinih začetkov ti je žal, da nisva ohranila?",
+          "Kdo od naju se je bolj spremenil — in v čem?",
+          "Kateri dan iz najine skupne zgodovine bi rada podoživela?",
+          "Kaj si takrat pričakovala od naju, pa je danes drugače — na boljše?"
+        ],
+        actions:[
+          "Pokaži fotografijo iz najinih začetkov.",
+          "Povej tri stvari, ki so te takrat pritegnile.",
+          "Predvajajta pesem iz vajinih začetkov.",
+          "Nazdravita spominu, ki ga nosita oba.",
+          "Opiši najin prvi zmenek v treh stavkih.",
+          "Poišči predmet v stanovanju, ki nosi najin spomin."
+        ]
+      },
+      {
+        act:"4", title:"Ogledalo", sub:"Kako se vidiva.",
+        gate:"Zdaj pogledava drug v drugega — iskreno, tudi tam, kjer ni udobno.",
+        questions:[
+          "Kaj vidim v tebi, česar sama pri sebi ne vidiš?",
+          "Česa si se od mene naučila, ne da bi jaz vedel?",
+          "Kdaj si bila zadnjič ponosna name?",
+          "Katera moja lastnost te je na začetku motila, danes pa ti je pri srcu?",
+          "Kaj bi rada, da bolj cenim pri sebi?",
+          "Kdaj sem ti bil najbolj v oporo?",
+          "Kaj počneš zame, pa se mi zdi samoumevno?",
+          "Kako bi me opisala nekomu, ki me sploh ne pozna?",
+          "Kaj je moja največja moč kot partner?",
+          "Kje ti kot partner najbolj primanjkujem — povej mi brez ovinkov.",
+          "Kaj bi rada, da vem o tem, kako se počutiš v najinem vsakdanu?",
+          "Katero mojo skrb bi rada, da spustim?",
+          "Kaj bi mi rada rekla, čeprav misliš, da to že vem?"
+        ],
+        actions:[
+          "Povej tri stvari, za katere si hvaležna.",
+          "Pet minut samo poslušaj, brez prekinjanja.",
+          "Poglej partnerja in mu povej, kaj dobrega vidiš.",
+          "Napiši na listek eno stvar, ki jo občuduješ, in mu ga daj.",
+          "Zahvali se za nekaj majhnega iz tega tedna.",
+          "Povej eno stvar, ki bi jo rada popravila pri sebi."
+        ]
+      },
+      {
+        act:"5", title:"Obzorje", sub:"Kam greva.",
+        gate:"Naslednja stopnja gleda naprej — sanje, načrti, kaj si upata zaželeti.",
+        questions:[
+          "Kaj si najbolj želiš, da narediva v naslednjem letu?",
+          "Kje se vidiš čez pet let — in kje vidiš naju?",
+          "Katere sanje si odložila in bi jih rada spet vzela v roke?",
+          "Kaj bi rada, da postane najina redna navada?",
+          "Če bi imela eno leto brez obveznosti, kaj bi počela?",
+          "Kam bi rada odpotovala, preden bova prestara?",
+          "Kaj želiva, da o naju rečejo ljudje čez dvajset let?",
+          "Katero stvar bi se rada naučila skupaj z mano?",
+          "Česa se v prihodnosti najbolj veseliš?",
+          "Kaj bi rada, da nehava delati?",
+          "Kakšen dom si predstavljaš čez deset let?",
+          "Kaj bi rada, da ostane isto, ne glede na vse?",
+          "Kateri majhen korak lahko narediva že ta teden?"
+        ],
+        actions:[
+          "Izberita datum za nekaj, kar si oba želita, in ga zapišita.",
+          "Naštejta pet stvari na skupnem seznamu želja.",
+          "Poiščita en kraj na zemljevidu.",
+          "Določita eno navado, ki jo začneta ta teden.",
+          "Premislita, kaj bi bilo potrebno za eno vajino sanjo.",
+          "Zapišita eno stvar, ki jo želita doseči do konca leta."
+        ]
+      },
+      {
+        act:"6", title:"Zaobljuba", sub:"Kar ostane, ko vse drugo utihne.",
+        gate:"Zadnja stopnja. Tu se izrečejo obljube — počasi in na glas.",
+        questions:[
+          "Kaj mi obljubiš za naslednje leto?",
+          "Za kaj se mi želiš zahvaliti — in za kaj se želim jaz tebi?",
+          "Kaj bi rada, da ti rečem vsak dan, pa ti tega ne rečem dovolj?",
+          "Če bi imela nocoj samo en stavek zame, kaj bi bil?",
+          "Kaj obljubiš, da ne boš več počela?",
+          "Kaj mi želiš odpustiti — in kaj bi rada, da odpustim jaz?",
+          "Kaj bo najin znak, ko bo eden od naju potreboval pomoč?",
+          "Katero besedo bi izbrala za naju za to leto?",
+          "Kaj bi rada, da si obljubiva, čeprav se sliši preprosto?",
+          "Kaj boš naredila zame ta teden, ne da bi te prosil?",
+          "Kaj si želiš, da si obljubiva o težkih pogovorih?",
+          "Zaključi stavek: „Hvaležna sem, da si …“",
+          "Zaključi stavek: „Obljubim ti, da bom …“"
+        ],
+        actions:[
+          "Napišita si vsak po eno vrstico in jo izmenjajta.",
+          "Objem, ki traja celo minuto, brez besed.",
+          "Povej obljubo na glas, gledaje partnerja v oči.",
+          "Nazdravita naslednjemu letu.",
+          "Držita se za roke in vsak pove eno hvaležnost.",
+          "Shranita listek nekam, kjer ga bosta našla čez leto dni."
+        ]
+      }
+    ]
+  },
 
-  /* ================= POMOŽNE ================= */
-  function show(name) {
-    Object.values(screens).forEach(s => s.classList.remove("on"));
-    screens[name].classList.add("on");
-    topEl.hidden = (name !== "act");
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  play: {
+    name:"Igra", icon:"🎯", actionLabel:"Izziv", actionBtn:"Izziv",
+    done:["Konec igre,","zmagala sta oba."],
+    doneSub:"Zdaj pa določita datum za naslednji tak večer.",
+    stages:[
+      {
+        act:"3", title:"Kdo od naju?", sub:"Odgovorita hkrati in primerjajta.",
+        gate:"Zdaj postane igrivo — odgovarjata hkrati, brez razmišljanja.",
+        questions:[
+          "Kdo od naju bi prej preživel teden brez telefona?",
+          "Kdo se hitreje razjezi — in kdo hitreje odpusti?",
+          "Kdo od naju bolje kuha, roko na srce?",
+          "Kdo bi zmagal v tekmi, kdo dlje molči?",
+          "Kdo od naju je bolj zapravljiv?",
+          "Kdo bi se bolje znašel na samotnem otoku?",
+          "Kdo se pogosteje opraviči prvi?",
+          "Kdo je bolj trmast — in kdaj se to najbolj vidi?",
+          "Kdo od naju bolj smrči? Pošteno.",
+          "Kdo bi prej zmagal v karaokah?",
+          "Kdo bolje pozna drugega — dokaži.",
+          "Kdo od naju je bolj romantičen?",
+          "Kdo prej zaspi pred filmom?"
+        ],
+        actions:[
+          "Posnemi partnerja, dokler ne ugane, koga igraš.",
+          "Povej tri stvari o partnerju, ena je laž — naj ugane katera.",
+          "Zapoj vrstico pesmi, ki jo partner najbolj sovraži.",
+          "Opiši partnerja z eno samo besedo, brez razlage.",
+          "V desetih sekundah naštej tri partnerjeve navade.",
+          "Naredita skupaj najbolj neumen obraz."
+        ]
+      },
+      {
+        act:"4", title:"Kaj bi raje?", sub:"Izbrati moraš eno. Brez izmikanja.",
+        gate:"Naslednja stopnja: samo dve možnosti in nobenega izgovora.",
+        questions:[
+          "En mesec brez interneta ali en mesec brez sladkarij?",
+          "Teden na plaži ali teden v gorah?",
+          "Znati brati misli ali biti neviden?",
+          "Bogato življenje brez potovanj ali skromno s potovanji po vsem svetu?",
+          "Vedno vnaprej vedeti resnico ali nikoli ne slišati slabe novice?",
+          "Zajtrk v postelji vsak dan ali masaža vsak večer?",
+          "Podoživeti en dan iz preteklosti ali videti en dan iz prihodnosti?",
+          "Živeti na deželi ali sredi mesta?",
+          "Dodatna ura spanja ali dodatna ura sama z mano?",
+          "Nepričakovan izlet ali popolnoma prazen vikend doma?",
+          "Da te razvajam cel dan ali da te peljem na pravo avanturo?",
+          "Hiša ob morju ali koča v gozdu?",
+          "Znati vse jezike ali igrati vsak instrument?"
+        ],
+        actions:[
+          "Zamenjajta mesti in odgovarjajta drug za drugega.",
+          "Naslednji odgovor povej v rimah.",
+          "Odgovori z zaprtimi očmi.",
+          "Odgovori tako, kot bi odgovoril partner.",
+          "Naslednji odgovor povej šepetaje.",
+          "Odgovori v treh besedah, nič več."
+        ]
+      },
+      {
+        act:"5", title:"Stava", sub:"Kdo bo boljši?",
+        gate:"Zdaj gre za zmago. Poraženec plača — dogovorita se, kako.",
+        questions:[
+          "Staviva: v treh poskusih uganem tvojo najljubšo malenkost pri meni.",
+          "Kdo prej našteje pet stvari, ki jih ima drugi v torbi ali žepu?",
+          "Uganeš, katero jed sem si zaželel prav zdaj?",
+          "Kdo dlje zdrži, ne da bi se nasmejal?",
+          "Zapojta refren pesmi, ki jo oba poznata — kdo pozabi besedilo prvi?",
+          "Kdo prej našteje deset najinih skupnih krajev?",
+          "Uganeš mojo najljubšo lastnost pri tebi v dveh poskusih?",
+          "Kdo bolje posnema drugega?",
+          "Kdo dlje drži pogled, ne da bi mignil?",
+          "V eni minuti naštej čim več stvari, ki jih imava oba rada.",
+          "Kdo prej ugane, na katero besedo mislim? Dovoljena so tri vprašanja.",
+          "Staviva, kdo bo jutri prej vstal — zmagovalec dobi kavo v posteljo.",
+          "Kdo prej našteje pet stvari, ki jih je drugi naredil zanj ta teden?"
+        ],
+        actions:[
+          "Poraženec naredi pet počepov.",
+          "Zmagovalec izbere naslednje vprašanje.",
+          "Poraženec si v treh sekundah izmisli kompliment.",
+          "Zmagovalec dobi minuto masaže ramen.",
+          "Poraženec zapoje refren po izbiri zmagovalca.",
+          "Poraženec plača naslednjo kavo."
+        ]
+      },
+      {
+        act:"6", title:"Veliki finale", sub:"Zaključek s smehom.",
+        gate:"Zadnja stopnja. Čas za razglasitev zmagovalca in eno neumnost.",
+        questions:[
+          "Kdo je nocoj bolj presenetil drugega?",
+          "Kdo prej ugane, kaj si je drugi ta večer najbolj želel?",
+          "Podelita si vsak po eno nagrado za nocoj — poljubno.",
+          "Izberita skupaj eno neumnost, ki jo naredita še nocoj.",
+          "Kaj je bil najboljši trenutek nocojšnjega večera?",
+          "Zmagovalec dobi eno željo, ki jo mora drugi izpolniti ta teden.",
+          "Skupaj določita „naslov“ nocojšnjega večera.",
+          "Kdo si je nocoj prislužil zajtrk v posteljo?",
+          "Katero vprašanje te je nocoj najbolj presenetilo?",
+          "Kaj bi rada, da ponoviva naslednjič?",
+          "Kdo je nocoj bolj goljufal? Pošteno.",
+          "Če bi nocojšnji večer dobil oceno od 1 do 10, koliko in zakaj?"
+        ],
+        actions:[
+          "Ples ob eni pesmi, ne glede na to, kdo zna plesati.",
+          "Skupni selfi za spomin na nocoj.",
+          "Zmagovalec izbere sladico, poraženec jo prinese.",
+          "Objem, dolg kot refren najine pesmi.",
+          "Vsak pove eno stvar, ki ga je nocoj presenetila.",
+          "Nazdravita in določita datum naslednjega takega večera."
+        ]
+      }
+    ]
+  }
+};
+
+/* ==================== ELEMENTI ==================== */
+const body = document.body;
+const topEl = document.getElementById("top");
+const waxEl = document.getElementById("wax");
+const screens = {
+  intro: document.getElementById("intro"),
+  act:   document.getElementById("act"),
+  cross: document.getElementById("cross"),
+  heat:  document.getElementById("heat"),
+  gate:  document.getElementById("gate"),
+  done:  document.getElementById("done")
+};
+const actEyebrow = document.getElementById("actEyebrow");
+const actTitle   = document.getElementById("actTitle");
+const actSub     = document.getElementById("actSub");
+const dotsEl     = document.getElementById("dots");
+const turnEl     = document.getElementById("turn");
+const counterEl  = document.getElementById("counter");
+const qcard      = document.getElementById("qcard");
+const qtext      = document.getElementById("qtext");
+const actionEl   = document.getElementById("action");
+const actionLbl  = document.getElementById("actionLabel");
+const actionText = document.getElementById("actionText");
+const diceBtn    = document.getElementById("diceBtn");
+const actionBtn  = document.getElementById("actionBtn");
+const skipBtn    = document.getElementById("skipBtn");
+const nextBtn    = document.getElementById("nextBtn");
+const backBtn    = document.getElementById("backBtn");
+const qOnlyBtn   = document.getElementById("qOnly");
+const gateSwap   = document.getElementById("gateSwap");
+
+/* ==================== STANJE ==================== */
+let names = ["Prvi", "Druga"];
+let pathId = "fire";
+let maxStage = 5;
+let onlyQuestions = false;
+let stage = 0;
+let askerIdx = 0;
+let used = [];
+let pendingStage = null;
+
+/* ==================== POMOŽNE ==================== */
+function getStage(i) {
+  return (i < 2) ? COMMON[i] : PATHS[pathId].stages[i - 2];
+}
+
+function show(name) {
+  Object.values(screens).forEach(s => s.classList.remove("on"));
+  screens[name].classList.add("on");
+  topEl.hidden = (name !== "act");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function buildDots() {
+  dotsEl.innerHTML = "";
+  for (let i = 0; i <= maxStage; i++) {
+    const d = document.createElement("span");
+    d.className = "dot";
+    dotsEl.appendChild(d);
+  }
+}
+
+function updateCandle() {
+  const total = maxStage + 1;
+  const ratio = total > 1 ? stage / (total - 1) : 0;
+  waxEl.style.height = (104 - ratio * 88) + "px";
+}
+
+function updateTurn() {
+  turnEl.innerHTML = "Vpraša <b>" + names[askerIdx] + "</b> · odgovarja " + names[1 - askerIdx];
+}
+
+function updateCounter() {
+  counterEl.textContent = used.length + " / " + getStage(stage).questions.length;
+}
+
+function rollAnim(btn) {
+  btn.classList.add("rolling");
+  setTimeout(() => btn.classList.remove("rolling"), 500);
+}
+
+/* ==================== STOPNJE ==================== */
+function loadStage(i) {
+  stage = i;
+  const s = getStage(i);
+  const p = PATHS[pathId];
+
+  body.dataset.path = pathId;
+  body.dataset.act = s.act;
+
+  actEyebrow.textContent = (i < 2)
+    ? (i + 1) + ". stopnja · " + (maxStage + 1)
+    : p.icon + " " + p.name + " · " + (i + 1) + ". stopnja";
+  actTitle.textContent = s.title;
+  actSub.textContent = s.sub;
+
+  [...dotsEl.children].forEach((d, idx) => d.classList.toggle("active", idx === i));
+  updateCandle();
+
+  used = [];
+  qtext.className = "qtext qplaceholder";
+  qtext.textContent = "Vrzi kocko za prvo vprašanje.";
+  actionEl.classList.remove("show");
+  skipBtn.disabled = true;
+
+  const hasActions = !!s.actions && !onlyQuestions;
+  actionBtn.hidden = !hasActions;
+  if (hasActions) {
+    actionBtn.querySelector(".die").textContent = p.icon;
+    actionBtn.lastChild.textContent = " " + p.actionBtn;
+    actionLbl.textContent = p.actionLabel;
   }
 
-  function buildDots() {
-    dotsEl.innerHTML = "";
-    for (let i = 0; i <= maxStage; i++) {
-      const d = document.createElement("span");
-      d.className = "dot";
-      dotsEl.appendChild(d);
-    }
-  }
+  nextBtn.textContent = (i === maxStage) ? "Zaključi ›" : "Naprej ›";
+  backBtn.textContent = (i === 0) ? "‹ Uvod" : "‹ Nazaj";
 
-  function updateCandle() {
-    const total = maxStage + 1;
-    const ratio = total > 1 ? stage / (total - 1) : 0;
-    waxEl.style.height = (104 - ratio * 88) + "px";
-  }
+  updateTurn();
+  updateCounter();
+}
 
-  function updateTurn() {
-    turnEl.innerHTML = "Vpraša <b>" + names[askerIdx] + "</b> · odgovarja " + names[1 - askerIdx];
-  }
+function drawQuestion(switchTurn) {
+  const pool = getStage(stage).questions;
+  const remaining = pool.map((_, idx) => idx).filter(idx => !used.includes(idx));
 
-  function updateCounter() {
-    counterEl.textContent = used.length + " / " + STAGES[stage].questions.length;
-  }
-
-  function rollAnim(btn) {
-    btn.classList.add("rolling");
-    setTimeout(() => btn.classList.remove("rolling"), 500);
-  }
-
-  /* ================= STOPNJE ================= */
-  function loadStage(i) {
-    stage = i;
-    const s = STAGES[i];
-    body.dataset.act = s.act;
-    actEyebrow.textContent = (i + 1) + ". stopnja · " + (maxStage + 1);
-    actTitle.textContent = s.title;
-    actSub.textContent = s.sub;
-
-    [...dotsEl.children].forEach((d, idx) => d.classList.toggle("active", idx === i));
-    updateCandle();
-
-    used = [];
+  if (remaining.length === 0) {
     qtext.className = "qtext qplaceholder";
-    qtext.textContent = "Vrzi kocko za prvo vprašanje.";
-    actionEl.classList.remove("show");
+    qtext.textContent = "Vsa vprašanja te stopnje so izžrebana. Pojdita naprej ›";
     skipBtn.disabled = true;
-
-    const hasActions = !!s.actions && !onlyQuestions;
-    actionBtn.hidden = !hasActions;
-
-    nextBtn.textContent = (i === maxStage) ? "Zaključi ›" : "Naprej ›";
-    backBtn.textContent = (i === 0) ? "‹ Uvod" : "‹ Nazaj";
-
-    updateTurn();
-    updateCounter();
+    return;
   }
 
-  function drawQuestion(switchTurn) {
-    const pool = STAGES[stage].questions;
-    const remaining = pool.map((_, idx) => idx).filter(idx => !used.includes(idx));
+  const pick = remaining[Math.floor(Math.random() * remaining.length)];
+  used.push(pick);
+  qtext.className = "qtext";
+  qtext.textContent = pool[pick];
 
-    if (remaining.length === 0) {
-      qtext.className = "qtext qplaceholder";
-      qtext.textContent = "Vsa vprašanja te stopnje so izžrebana. Pojdita naprej ›";
-      skipBtn.disabled = true;
-      return;
+  qcard.classList.remove("pulse"); void qcard.offsetWidth; qcard.classList.add("pulse");
+  skipBtn.disabled = false;
+  updateCounter();
+
+  if (switchTurn) { askerIdx = 1 - askerIdx; }
+  updateTurn();
+}
+
+function drawAction() {
+  const pool = getStage(stage).actions;
+  if (!pool) return;
+  actionText.textContent = pool[Math.floor(Math.random() * pool.length)];
+  actionEl.classList.remove("show"); void actionEl.offsetWidth; actionEl.classList.add("show");
+}
+
+function openGate(nextIdx) {
+  pendingStage = nextIdx;
+  const s = getStage(nextIdx);
+  document.getElementById("gateEyebrow").textContent =
+    (nextIdx < 2) ? (nextIdx + 1) + ". stopnja" : PATHS[pathId].icon + " " + PATHS[pathId].name;
+  document.getElementById("gateTitle").textContent = s.title;
+  document.getElementById("gateSub").textContent = s.gate;
+  body.dataset.act = s.act;
+  gateSwap.hidden = (nextIdx < 2);
+  show("gate");
+}
+
+/* ==================== UVOD ==================== */
+qOnlyBtn.addEventListener("click", () => {
+  const on = qOnlyBtn.classList.toggle("on");
+  qOnlyBtn.setAttribute("aria-pressed", on ? "true" : "false");
+});
+
+document.getElementById("startBtn").addEventListener("click", () => {
+  const a = document.getElementById("nameA").value.trim();
+  const b = document.getElementById("nameB").value.trim();
+  names = [a || "Prvi", b || "Druga"];
+  onlyQuestions = qOnlyBtn.classList.contains("on");
+  askerIdx = 0;
+  maxStage = 5;
+  buildDots();
+  loadStage(0);
+  show("act");
+});
+
+/* ==================== RAZPOTJE ==================== */
+document.querySelectorAll(".path").forEach(btn => {
+  btn.addEventListener("click", () => {
+    pathId = btn.dataset.path;
+    body.dataset.path = pathId;
+    if (pathId === "fire") {
+      body.dataset.act = "3";
+      show("heat");
+    } else {
+      maxStage = 5;
+      buildDots();
+      openGate(2);
     }
-
-    const pick = remaining[Math.floor(Math.random() * remaining.length)];
-    used.push(pick);
-    qtext.className = "qtext";
-    qtext.textContent = pool[pick];
-
-    qcard.classList.remove("pulse"); void qcard.offsetWidth; qcard.classList.add("pulse");
-    skipBtn.disabled = false;
-    updateCounter();
-
-    if (switchTurn) { askerIdx = 1 - askerIdx; }
-    updateTurn();
-  }
-
-  function drawAction() {
-    const pool = STAGES[stage].actions;
-    if (!pool) return;
-    actionText.textContent = pool[Math.floor(Math.random() * pool.length)];
-    actionEl.classList.remove("show"); void actionEl.offsetWidth; actionEl.classList.add("show");
-  }
-
-  function openGate(nextIdx) {
-    pendingStage = nextIdx;
-    const s = STAGES[nextIdx];
-    document.getElementById("gateEyebrow").textContent = (nextIdx + 1) + ". stopnja";
-    document.getElementById("gateTitle").innerHTML = s.title;
-    document.getElementById("gateSub").textContent = s.gate;
-    body.dataset.act = s.act;
-    show("gate");
-  }
-
-  /* ================= UVOD ================= */
-  document.querySelectorAll(".level").forEach(btn => {
-    btn.addEventListener("click", () => {
-      document.querySelectorAll(".level").forEach(b => b.classList.remove("sel"));
-      btn.classList.add("sel");
-    });
   });
+});
 
-  qOnlyBtn.addEventListener("click", () => {
-    const on = qOnlyBtn.classList.toggle("on");
-    qOnlyBtn.setAttribute("aria-pressed", on ? "true" : "false");
-  });
-
-  document.getElementById("startBtn").addEventListener("click", () => {
-    const a = document.getElementById("nameA").value.trim();
-    const b = document.getElementById("nameB").value.trim();
-    names = [a || "Prvi", b || "Druga"];
-    maxStage = parseInt(document.querySelector(".level.sel").dataset.max, 10);
-    onlyQuestions = qOnlyBtn.classList.contains("on");
-    askerIdx = 0;
+document.querySelectorAll(".level").forEach(btn => {
+  btn.addEventListener("click", () => {
+    maxStage = parseInt(btn.dataset.max, 10);
     buildDots();
-    loadStage(0);
-    show("act");
+    openGate(2);
   });
+});
 
-  /* ================= IGRA ================= */
-  diceBtn.addEventListener("click", () => { rollAnim(diceBtn); drawQuestion(true); });
-  actionBtn.addEventListener("click", () => { rollAnim(actionBtn); drawAction(); });
-  skipBtn.addEventListener("click", () => { drawQuestion(false); });
+/* ==================== IGRA ==================== */
+diceBtn.addEventListener("click", () => { rollAnim(diceBtn); drawQuestion(true); });
+actionBtn.addEventListener("click", () => { rollAnim(actionBtn); drawAction(); });
+skipBtn.addEventListener("click", () => { drawQuestion(false); });
 
-  nextBtn.addEventListener("click", () => {
-    if (stage < maxStage) { openGate(stage + 1); }
-    else { body.dataset.act = "done"; show("done"); }
-  });
+nextBtn.addEventListener("click", () => {
+  if (stage === 1) { body.dataset.act = "2"; show("cross"); return; }
+  if (stage < maxStage) { openGate(stage + 1); return; }
+  const p = PATHS[pathId];
+  document.getElementById("doneTitle").innerHTML = p.done[0] + "<br /><em>" + p.done[1] + "</em>";
+  document.getElementById("doneSub").textContent = p.doneSub;
+  body.dataset.act = "done";
+  show("done");
+});
 
-  backBtn.addEventListener("click", () => {
-    if (stage === 0) { body.dataset.act = "intro"; show("intro"); }
-    else { loadStage(stage - 1); show("act"); }
-  });
+backBtn.addEventListener("click", () => {
+  if (stage === 0) { body.dataset.act = "intro"; show("intro"); }
+  else { loadStage(stage - 1); show("act"); }
+});
 
-  /* ================= VRATA ================= */
-  document.getElementById("gateGo").addEventListener("click", () => {
-    loadStage(pendingStage);
-    pendingStage = null;
-    show("act");
-  });
+/* ==================== VRATA ==================== */
+document.getElementById("gateGo").addEventListener("click", () => {
+  loadStage(pendingStage);
+  pendingStage = null;
+  show("act");
+});
 
-  document.getElementById("gateStay").addEventListener("click", () => {
-    pendingStage = null;
-    body.dataset.act = STAGES[stage].act;
-    show("act");
-  });
+document.getElementById("gateStay").addEventListener("click", () => {
+  pendingStage = null;
+  body.dataset.act = getStage(stage).act;
+  show("act");
+});
 
-  /* ================= KONEC ================= */
-  document.getElementById("restartBtn").addEventListener("click", () => {
-    askerIdx = 0;
-    body.dataset.act = "intro";
-    show("intro");
-  });
+gateSwap.addEventListener("click", () => {
+  pendingStage = null;
+  body.dataset.act = "2";
+  show("cross");
+});
+
+/* ==================== KONEC ==================== */
+document.getElementById("restartBtn").addEventListener("click", () => {
+  askerIdx = 0;
+  pathId = "fire";
+  body.dataset.path = "fire";
+  body.dataset.act = "intro";
+  show("intro");
+});
 </script>
 </body>
 </html>
