@@ -39,12 +39,12 @@
   }
   .wrap {
     max-width: 620px; margin: 0 auto;
-    padding: clamp(24px,5vw,48px) clamp(20px,5vw,36px) 80px;
+    padding: clamp(22px,5vw,44px) clamp(20px,5vw,34px) 32px;
     min-height: 100vh; display: flex; flex-direction: column;
   }
 
-  /* header */
-  .top { display: flex; align-items: center; gap: 16px; padding-bottom: 22px; }
+  /* ---------- header ---------- */
+  .top { display: flex; align-items: center; gap: 16px; padding-bottom: 20px; }
   .candle { width: 24px; flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; }
   .flame {
     width: 12px; height: 20px;
@@ -59,11 +59,6 @@
     box-shadow: inset 0 4px 6px rgba(255,255,255,0.35);
     height: 104px; transition: height 1200ms var(--ease);
   }
-  body[data-act="2"] .wax { height: 84px; }
-  body[data-act="3"] .wax { height: 66px; }
-  body[data-act="4"] .wax { height: 48px; }
-  body[data-act="5"] .wax { height: 30px; }
-  body[data-act="6"] .wax { height: 16px; }
   body[data-act="intro"] .flame, body[data-act="done"] .flame { animation: none; opacity: 0.9; }
   @keyframes flicker {
     0%,100% { transform: rotate(-1.5deg) scaleY(1); opacity: 1; }
@@ -71,85 +66,143 @@
     50% { transform: rotate(-1deg) scaleY(0.96); opacity: 1; }
     75% { transform: rotate(1deg) scaleY(1.03); opacity: 0.95; }
   }
-  .top-meta { flex: 1; }
+  .top-meta { flex: 1; min-width: 0; }
   .eyebrow { font-size: 0.7rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
   .act-title { font-family: "Fraunces", serif; font-weight: 400; font-size: clamp(1.4rem,5vw,1.9rem); line-height: 1.1; margin-top: 3px; }
   .act-sub { color: var(--ink-soft); font-size: 0.9rem; font-style: italic; margin-top: 4px; font-family: "Fraunces", serif; }
 
-  /* screens */
+  /* ---------- screens ---------- */
   .screen { display: none; flex: 1; flex-direction: column; }
   .screen.on { display: flex; animation: rise 700ms var(--ease); }
   @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 
-  /* intro / setup */
-  #intro { justify-content: center; text-align: center; gap: 20px; }
+  /* ---------- intro ---------- */
+  #intro { justify-content: center; text-align: center; gap: 18px; padding: 10px 0; }
   .intro-eyebrow { font-size: 0.7rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--accent); }
-  .intro-title { font-family: "Fraunces", serif; font-weight: 300; font-size: clamp(3rem,13vw,5rem); line-height: 0.95; letter-spacing: -0.02em; }
+  .intro-title { font-family: "Fraunces", serif; font-weight: 300; font-size: clamp(2.8rem,12vw,4.6rem); line-height: 0.95; letter-spacing: -0.02em; }
   .intro-title em { font-style: italic; font-weight: 400; }
-  .intro-lead { color: var(--ink-soft); font-size: 1.02rem; max-width: 40ch; margin: 0 auto; }
-  .names { display: flex; gap: 12px; max-width: 380px; margin: 6px auto 0; }
+  .intro-lead { color: var(--ink-soft); font-size: 1rem; max-width: 40ch; margin: 0 auto; }
+
+  .names { display: flex; gap: 12px; max-width: 380px; margin: 0 auto; width: 100%; }
   .field { flex: 1; text-align: left; }
-  .field label { font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); }
+  .field label { font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); }
   .field input {
     width: 100%; margin-top: 6px; padding: 12px 14px;
     background: var(--card); border: 1px solid var(--card-line); border-radius: 12px;
     color: var(--ink); font: inherit; font-size: 1rem;
   }
   .field input:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .block-label {
+    font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink-soft); text-align: left; max-width: 380px; margin: 4px auto -6px; width: 100%;
+  }
+  .levels { display: grid; gap: 8px; max-width: 380px; margin: 0 auto; width: 100%; }
+  .level {
+    display: flex; align-items: baseline; gap: 10px; text-align: left;
+    padding: 13px 16px; border-radius: 13px; cursor: pointer;
+    border: 1px solid var(--card-line); background: var(--card);
+    color: var(--ink); font: inherit;
+    transition: border-color 200ms, background 200ms;
+  }
+  .level:hover { border-color: var(--accent); }
+  .level.sel { border-color: var(--accent); background: rgba(255,255,255,0.09); }
+  .level b { font-weight: 600; font-size: 0.98rem; }
+  .level i { font-style: normal; color: var(--ink-soft); font-size: 0.8rem; margin-left: auto; }
+  .level:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .toggle {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    max-width: 380px; margin: 0 auto; width: 100%;
+    padding: 12px 16px; border-radius: 13px; cursor: pointer;
+    border: 1px solid var(--card-line); background: var(--card); color: var(--ink); font: inherit;
+    text-align: left; font-size: 0.92rem;
+  }
+  .toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .switch {
+    width: 42px; height: 24px; border-radius: 999px; flex: 0 0 auto;
+    background: rgba(255,255,255,0.14); position: relative; transition: background 240ms;
+  }
+  .switch::after {
+    content: ""; position: absolute; top: 3px; left: 3px;
+    width: 18px; height: 18px; border-radius: 50%; background: var(--ink);
+    transition: transform 240ms var(--ease);
+  }
+  .toggle.on .switch { background: var(--accent); }
+  .toggle.on .switch::after { transform: translateX(18px); }
+
   .intro-note { font-family: "Fraunces", serif; font-style: italic; opacity: 0.85; font-size: 0.95rem; }
 
-  /* play area */
-  #act { gap: 4px; }
-  .turn {
-    text-align: center; padding: 6px 0 2px;
-    font-size: 0.82rem; letter-spacing: 0.04em; color: var(--ink-soft);
+  /* ---------- play ---------- */
+  #act { gap: 2px; }
+  .meta-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    font-size: 0.8rem; color: var(--ink-soft); padding: 2px 2px 0;
   }
-  .turn b { color: var(--accent); font-weight: 600; }
+  .meta-row b { color: var(--accent); font-weight: 600; }
+  .counter { font-variant-numeric: tabular-nums; opacity: 0.8; flex: 0 0 auto; }
+
   .qcard {
     background: var(--card); border: 1px solid var(--card-line); border-radius: 20px;
-    padding: 34px 26px; min-height: 210px; margin-top: 10px;
+    padding: 32px 24px; min-height: 200px; margin-top: 10px;
     display: flex; align-items: center; justify-content: center; text-align: center;
     box-shadow: 0 14px 40px rgba(0,0,0,0.3);
   }
   .qcard.pulse { animation: pop 380ms var(--ease); }
   @keyframes pop { 0% { transform: scale(0.97); opacity: 0.5; } 100% { transform: scale(1); opacity: 1; } }
-  .qtext { font-family: "Fraunces", serif; font-size: clamp(1.2rem,4.6vw,1.55rem); line-height: 1.35; }
+  .qtext { font-family: "Fraunces", serif; font-size: clamp(1.18rem,4.5vw,1.5rem); line-height: 1.35; }
   .qplaceholder { color: var(--ink-soft); font-style: italic; }
 
   .action {
-    margin-top: 12px; border: 1px dashed var(--accent); border-radius: 14px;
-    padding: 14px 18px; text-align: center; color: var(--ink);
-    background: rgba(255,255,255,0.03); display: none;
+    margin-top: 10px; border: 1px dashed var(--accent); border-radius: 14px;
+    padding: 13px 18px; text-align: center; background: rgba(255,255,255,0.03); display: none;
   }
   .action.show { display: block; animation: pop 380ms var(--ease); }
-  .action span { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 4px; }
-  .action p { font-family: "Fraunces", serif; font-size: 1.05rem; }
+  .action span { font-size: 0.66rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 4px; }
+  .action p { font-family: "Fraunces", serif; font-size: 1.02rem; }
 
-  .rolls { display: flex; gap: 10px; margin-top: 16px; }
+  .rolls { display: flex; gap: 9px; margin-top: 14px; }
   .btn {
     font: inherit; font-weight: 500; cursor: pointer; border-radius: 999px;
     padding: 14px 20px; border: 1px solid var(--card-line); background: transparent; color: var(--ink);
-    transition: transform 180ms var(--ease), background 180ms, border-color 180ms; flex: 1;
+    transition: transform 180ms var(--ease), background 180ms, border-color 180ms, opacity 180ms;
   }
   .btn:hover { transform: translateY(-2px); }
   .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .btn:disabled { opacity: 0.4; cursor: default; transform: none; }
   .btn-primary { background: var(--accent); border-color: var(--accent); color: #1a0a10; font-weight: 600; }
+  .btn-grow { flex: 1; }
   .btn-dice .die { display: inline-block; transition: transform 500ms var(--ease); }
   .btn-dice.rolling .die { transform: rotate(360deg) scale(1.3); }
-  .btn-ghost { color: var(--ink-soft); flex: 0 0 auto; padding: 14px 18px; }
+  .btn-ghost { color: var(--ink-soft); }
   .btn-ghost:hover { color: var(--ink); border-color: var(--accent); }
+  .btn-small { padding: 11px 18px; font-size: 0.9rem; }
 
-  .nav { margin-top: auto; padding-top: 26px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .skip-row { display: flex; justify-content: center; margin-top: 10px; }
+
+  .nav { margin-top: auto; padding-top: 22px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
   .dots { display: flex; gap: 7px; }
   .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--card-line); transition: background 400ms, transform 400ms; }
   .dot.active { background: var(--accent); transform: scale(1.4); }
 
-  #done { justify-content: center; text-align: center; gap: 18px; }
-  .done-title { font-family: "Fraunces", serif; font-weight: 300; font-size: clamp(2.2rem,9vw,3.4rem); line-height: 1; }
-  .done-title em { font-style: italic; }
-  .done-sub { color: var(--ink-soft); font-size: 1.02rem; max-width: 38ch; margin: 0 auto; }
+  /* ---------- gate ---------- */
+  #gate { justify-content: center; text-align: center; gap: 20px; }
+  .gate-eyebrow { font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); }
+  .gate-title { font-family: "Fraunces", serif; font-weight: 300; font-size: clamp(2rem,8vw,3rem); line-height: 1.05; }
+  .gate-title em { font-style: italic; }
+  .gate-sub { color: var(--ink-soft); font-size: 1rem; max-width: 36ch; margin: 0 auto; }
+  .gate-btns { display: flex; flex-direction: column; gap: 10px; max-width: 320px; margin: 4px auto 0; width: 100%; }
 
-  .footer { text-align: center; color: var(--ink-soft); opacity: 0.45; font-size: 0.7rem; letter-spacing: 0.1em; padding-top: 34px; }
+  /* ---------- done ---------- */
+  #done { justify-content: center; text-align: center; gap: 18px; }
+  .done-title { font-family: "Fraunces", serif; font-weight: 300; font-size: clamp(2.1rem,9vw,3.3rem); line-height: 1; }
+  .done-title em { font-style: italic; }
+  .done-sub { color: var(--ink-soft); font-size: 1rem; max-width: 38ch; margin: 0 auto; }
+
+  .safeword {
+    text-align: center; color: var(--ink-soft); opacity: 0.45;
+    font-size: 0.74rem; line-height: 1.5; padding-top: 26px; font-style: italic;
+  }
 
   @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 </style>
@@ -158,7 +211,7 @@
   <div class="wrap">
 
     <header class="top" id="top" hidden>
-      <div class="candle" aria-hidden="true"><div class="flame"></div><div class="wax"></div></div>
+      <div class="candle" aria-hidden="true"><div class="flame"></div><div class="wax" id="wax"></div></div>
       <div class="top-meta">
         <div class="eyebrow" id="actEyebrow"></div>
         <h1 class="act-title" id="actTitle"></h1>
@@ -166,73 +219,111 @@
       </div>
     </header>
 
-    <!-- INTRO / SETUP -->
+    <!-- ============ INTRO ============ -->
     <section class="screen on" id="intro">
       <div class="intro-eyebrow">Za naju</div>
       <h1 class="intro-title">Najin<br /><em>večer</em></h1>
-      <p class="intro-lead">Šest stopenj, en večer. Vprašanja žrebeta s kocko, izmenično. Od lahkotnega klepeta do brez meja — v svojem tempu.</p>
+      <p class="intro-lead">Vprašanja žrebeta s kocko, izmenično. Kako daleč gre večer, izbereta sama — in lahko se kadar koli ustavita.</p>
+
       <div class="names">
         <div class="field"><label>Prvi</label><input id="nameA" type="text" placeholder="Ime" maxlength="16" /></div>
         <div class="field"><label>Druga</label><input id="nameB" type="text" placeholder="Ime" maxlength="16" /></div>
       </div>
-      <p class="intro-note">Brez telefonov, brez naglice. Samo midva.</p>
-      <div><button class="btn btn-primary" id="startBtn" style="flex:0 0 auto; padding:14px 34px;">Prižgi svečo</button></div>
-    </section>
 
-    <!-- PLAY -->
-    <section class="screen" id="act">
-      <p class="turn" id="turn"></p>
-      <div class="qcard" id="qcard"><span class="qtext qplaceholder" id="qtext">Vrzi kocko za prvo vprašanje.</span></div>
-      <div class="action" id="action"><span>Akcijska kocka</span><p id="actionText"></p></div>
-      <div class="rolls">
-        <button class="btn btn-primary btn-dice" id="diceBtn"><span class="die">🎲</span> Vprašanje</button>
-        <button class="btn btn-dice" id="actionBtn" hidden><span class="die">🔥</span> Akcija</button>
+      <div class="block-label">Kakšen večer si želita?</div>
+      <div class="levels" id="levels">
+        <button class="level" data-max="2"><b>Nežen</b><i>3 stopnje</i></button>
+        <button class="level sel" data-max="3"><b>Topel</b><i>4 stopnje</i></button>
+        <button class="level" data-max="4"><b>Vroč</b><i>5 stopenj</i></button>
+        <button class="level" data-max="5"><b>Brez meja</b><i>6 stopenj</i></button>
       </div>
-      <nav class="nav">
-        <button class="btn btn-ghost" id="backBtn">‹</button>
-        <div class="dots" aria-hidden="true">
-          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-        </div>
-        <button class="btn btn-ghost" id="nextBtn">›</button>
-      </nav>
+
+      <button class="toggle" id="qOnly" aria-pressed="false">
+        <span>Samo vprašanja, brez akcij</span><span class="switch"></span>
+      </button>
+
+      <p class="intro-note">Brez telefonov, brez naglice. Samo midva.</p>
+      <div><button class="btn btn-primary" id="startBtn" style="padding:14px 34px;">Prižgi svečo</button></div>
     </section>
 
-    <!-- DONE -->
+    <!-- ============ PLAY ============ -->
+    <section class="screen" id="act">
+      <div class="meta-row">
+        <span id="turn"></span>
+        <span class="counter" id="counter"></span>
+      </div>
+
+      <div class="qcard" id="qcard"><span class="qtext qplaceholder" id="qtext">Vrzi kocko za prvo vprašanje.</span></div>
+
+      <div class="action" id="action"><span id="actionLabel">Akcijska kocka</span><p id="actionText"></p></div>
+
+      <div class="rolls">
+        <button class="btn btn-primary btn-grow btn-dice" id="diceBtn"><span class="die">🎲</span> Vprašanje</button>
+        <button class="btn btn-grow btn-dice" id="actionBtn" hidden><span class="die">🔥</span> Akcija</button>
+      </div>
+
+      <div class="skip-row">
+        <button class="btn btn-ghost btn-small" id="skipBtn" disabled>Preskoči to karto</button>
+      </div>
+
+      <nav class="nav">
+        <button class="btn btn-ghost btn-small" id="backBtn">‹ Nazaj</button>
+        <div class="dots" id="dots" aria-hidden="true"></div>
+        <button class="btn btn-ghost btn-small" id="nextBtn">Naprej ›</button>
+      </nav>
+
+      <p class="safeword">Kadar koli lahko rečeta „dovolj za nocoj“ — večer se ne konča, samo umiri se.</p>
+    </section>
+
+    <!-- ============ GATE ============ -->
+    <section class="screen" id="gate">
+      <div class="gate-eyebrow" id="gateEyebrow"></div>
+      <h2 class="gate-title" id="gateTitle"></h2>
+      <p class="gate-sub" id="gateSub"></p>
+      <div class="gate-btns">
+        <button class="btn btn-primary" id="gateGo">Greva naprej</button>
+        <button class="btn btn-ghost" id="gateStay">Ostaniva tu</button>
+      </div>
+      <p class="safeword">Naprej gresta samo, če želita oba.</p>
+    </section>
+
+    <!-- ============ DONE ============ -->
     <section class="screen" id="done">
       <h2 class="done-title">Konec kart,<br /><em>ne pa večera.</em></h2>
       <p class="done-sub">Sveča naj dogori do konca. Kar sledi, ni več napisano tukaj.</p>
-      <div><button class="btn btn-ghost" id="restartBtn" style="flex:0 0 auto; padding:13px 28px;">Začni znova</button></div>
+      <div><button class="btn btn-ghost" id="restartBtn" style="padding:13px 28px;">Začni znova</button></div>
     </section>
 
-    <div class="footer">z ljubeznijo · najin večer</div>
   </div>
 
 <script>
+  /* ================= VSEBINA ================= */
   const STAGES = [
     {
-      act:"1", eyebrow:"1. stopnja · 6", title:"Za ogrevanje", sub:"Lahkotno, kot bi se spet spoznavala.",
+      act:"1", title:"Za ogrevanje", sub:"Lahkotno, kot bi se spet spoznavala.",
+      gate:"Prvi del je za sprostitev — nič težkega, samo midva.",
       questions:[
         "Kaj je bil najlepši drobec tvojega dneva?",
         "Če bi jutri lahko zbežala kamorkoli za en dan, kam bi šla — in bi me vzela s sabo?",
         "Ob katerem najinem skupnem spominu se še vedno od srca nasmejiš?",
-        "Za kaj si mi ta teden hvaležna, pa ti tega še nisem povedal?",
+        "Za kaj si mi ta teden hvaležna, pa mi tega še nisi povedala?",
         "Katera pesem ali okus te danes spomni name?",
         "Kaj bi si nocoj najbolj želela — kozarec vina, sprehod ali samo tišino ob meni?",
         "Katero stvar sva nazadnje naredila prvič skupaj?",
         "Če bi imela nocoj tri ure čisto zase, kako bi jih porabila?",
         "Katera moja navada te vedno nasmeji?",
         "Kaj si si kot otrok predstavljala, da boš počela pri teh letih?",
-        "Kateri najin 'notranji vic' ti pride prvi na misel?",
+        "Kateri najin „notranji vic“ ti pride prvi na misel?",
         "Kaj bi rada počela z mano več, pa nama v vsakdanu zmanjka časa?"
       ]
     },
     {
-      act:"2", eyebrow:"2. stopnja · 6", title:"Bliže", sub:"Zdaj pa iskreno in nežno.",
+      act:"2", title:"Bliže", sub:"Zdaj pa iskreno in nežno.",
+      gate:"Naslednja stopnja gre globlje — več iskrenosti, več srca.",
       questions:[
         "Kdaj si se ob meni nazadnje počutila zares varno?",
         "Kateri najin trenutek bi si želela podoživeti točno takšnega, kot je bil?",
-        "Kaj pri meni ceniš, pa se bojiš, da ti tega premalo pokažem?",
+        "Kaj pri meni ceniš, pa se bojiš, da mi tega premalo pokažeš?",
         "Česa se v zadnjem času tiho bojiš — in kako ti lahko stojim ob strani?",
         "Kaj ti pomenim, kar težko ubesediš?",
         "Kdaj si se zadnjič na novo zaljubila vame — ob čem?",
@@ -246,7 +337,8 @@
       ]
     },
     {
-      act:"3", eyebrow:"3. stopnja · 6", title:"Iskrice", sub:"Flirt in prva rahla bližina.",
+      act:"3", title:"Iskrice", sub:"Flirt in prva rahla bližina.",
+      gate:"Zdaj postane bolj igrivo — pogledi, komplimenti, prvi dotiki.",
       questions:[
         "Kaj mi prvo pade v oči, ko te pogledam čez sobo?",
         "Kdaj si se danes ujela, da misliš name?",
@@ -272,7 +364,8 @@
       ]
     },
     {
-      act:"4", eyebrow:"4. stopnja · 6", title:"Vročica", sub:"Senzualno, poželenje, dotik.",
+      act:"4", title:"Vročica", sub:"Senzualno, poželenje, dotik.",
+      gate:"Naslednja stopnja postane senzualna — več dotika, več poželenja.",
       questions:[
         "Kateri moj dotik te najbolj prevzame — in kje si ga zdaj najbolj želiš?",
         "Se spomniš najine prve noči? Kaj ti je najbolj ostalo v spominu?",
@@ -299,7 +392,8 @@
       ]
     },
     {
-      act:"5", eyebrow:"5. stopnja · 6", title:"Brez zavor", sub:"Odkrito in eksplicitno, a okusno.",
+      act:"5", title:"Brez zavor", sub:"Odkrito in eksplicitno, a okusno.",
+      gate:"Zdaj gre zares odkrito. Naprej samo, če to želita oba.",
       questions:[
         "Povej mi natančno, kje si zdaj najbolj želiš moje ustnice.",
         "Katera fantazija o naju te v zadnjem času najpogosteje obišče?",
@@ -326,7 +420,8 @@
       ]
     },
     {
-      act:"6", eyebrow:"6. stopnja · 6", title:"Brez meja", sub:"Skrite želje, izrečene na glas.",
+      act:"6", title:"Brez meja", sub:"Skrite želje, izrečene na glas.",
+      gate:"Zadnja stopnja. Tu ni več zadržkov — vstopita samo skupaj.",
       questions:[
         "Katero fantazijo si mi še nikoli nisi upala povedati — nocoj jo izreci na glas.",
         "Če bi nocoj veljalo prav vse, kaj bi bilo prvo, kar bi zahtevala od mene?",
@@ -336,11 +431,11 @@
         "Opiši mi prizor svojih sanj do zadnje podrobnosti.",
         "Kaj te mika, da bi nocoj prvič vpeljala v najino igro?",
         "Kje drugje kot v spalnici si me želiš nocoj?",
-        "Katero drzno besedo ali ukaz bi rada, da ti šepnem na uho?",
+        "Katero drzno besedo bi rada, da ti šepnem na uho?",
         "Kaj naj ti nocoj prepovem — in kaj ukažem?",
         "Katera tvoja skrita želja bi me najbolj presenetila?",
         "Za nocoj ni pravil: povej mi eno stvar, ki jo hočeš, brez pojasnil.",
-        "Prevzemi popolno vodenje — reci mi natanko, kaj naj naredim naslednje.",
+        "Česa nocoj nočeš — povej mi, da vem, kje je meja.",
         "Popolnoma mi zaupaj: reci mi, kam naj naju nocoj popeljem."
       ],
       actions:[
@@ -354,26 +449,43 @@
     }
   ];
 
+  /* ================= ELEMENTI ================= */
   const body = document.body;
   const topEl = document.getElementById("top");
-  const screens = { intro: document.getElementById("intro"), act: document.getElementById("act"), done: document.getElementById("done") };
+  const waxEl = document.getElementById("wax");
+  const screens = {
+    intro: document.getElementById("intro"),
+    act:   document.getElementById("act"),
+    gate:  document.getElementById("gate"),
+    done:  document.getElementById("done")
+  };
   const actEyebrow = document.getElementById("actEyebrow");
-  const actTitle = document.getElementById("actTitle");
-  const actSub = document.getElementById("actSub");
-  const dots = [...document.querySelectorAll(".dot")];
-  const turnEl = document.getElementById("turn");
-  const qcard = document.getElementById("qcard");
-  const qtext = document.getElementById("qtext");
-  const actionEl = document.getElementById("action");
+  const actTitle   = document.getElementById("actTitle");
+  const actSub     = document.getElementById("actSub");
+  const dotsEl     = document.getElementById("dots");
+  const turnEl     = document.getElementById("turn");
+  const counterEl  = document.getElementById("counter");
+  const qcard      = document.getElementById("qcard");
+  const qtext      = document.getElementById("qtext");
+  const actionEl   = document.getElementById("action");
   const actionText = document.getElementById("actionText");
-  const diceBtn = document.getElementById("diceBtn");
-  const actionBtn = document.getElementById("actionBtn");
+  const diceBtn    = document.getElementById("diceBtn");
+  const actionBtn  = document.getElementById("actionBtn");
+  const skipBtn    = document.getElementById("skipBtn");
+  const nextBtn    = document.getElementById("nextBtn");
+  const backBtn    = document.getElementById("backBtn");
+  const qOnlyBtn   = document.getElementById("qOnly");
 
+  /* ================= STANJE ================= */
   let names = ["Prvi", "Druga"];
+  let maxStage = 3;        // indeks zadnje dovoljene stopnje
+  let onlyQuestions = false;
   let stage = 0;
   let askerIdx = 0;
   let used = [];
+  let pendingStage = null; // stopnja, ki čaka za vrati
 
+  /* ================= POMOŽNE ================= */
   function show(name) {
     Object.values(screens).forEach(s => s.classList.remove("on"));
     screens[name].classList.add("on");
@@ -381,42 +493,84 @@
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
+  function buildDots() {
+    dotsEl.innerHTML = "";
+    for (let i = 0; i <= maxStage; i++) {
+      const d = document.createElement("span");
+      d.className = "dot";
+      dotsEl.appendChild(d);
+    }
+  }
+
+  function updateCandle() {
+    const total = maxStage + 1;
+    const ratio = total > 1 ? stage / (total - 1) : 0;
+    waxEl.style.height = (104 - ratio * 88) + "px";
+  }
+
+  function updateTurn() {
+    turnEl.innerHTML = "Vpraša <b>" + names[askerIdx] + "</b> · odgovarja " + names[1 - askerIdx];
+  }
+
+  function updateCounter() {
+    counterEl.textContent = used.length + " / " + STAGES[stage].questions.length;
+  }
+
+  function rollAnim(btn) {
+    btn.classList.add("rolling");
+    setTimeout(() => btn.classList.remove("rolling"), 500);
+  }
+
+  /* ================= STOPNJE ================= */
   function loadStage(i) {
     stage = i;
     const s = STAGES[i];
     body.dataset.act = s.act;
-    actEyebrow.textContent = s.eyebrow;
+    actEyebrow.textContent = (i + 1) + ". stopnja · " + (maxStage + 1);
     actTitle.textContent = s.title;
     actSub.textContent = s.sub;
-    dots.forEach((d, idx) => d.classList.toggle("active", idx === i));
+
+    [...dotsEl.children].forEach((d, idx) => d.classList.toggle("active", idx === i));
+    updateCandle();
+
     used = [];
     qtext.className = "qtext qplaceholder";
     qtext.textContent = "Vrzi kocko za prvo vprašanje.";
     actionEl.classList.remove("show");
-    const hasActions = !!s.actions;
+    skipBtn.disabled = true;
+
+    const hasActions = !!s.actions && !onlyQuestions;
     actionBtn.hidden = !hasActions;
+
+    nextBtn.textContent = (i === maxStage) ? "Zaključi ›" : "Naprej ›";
+    backBtn.textContent = (i === 0) ? "‹ Uvod" : "‹ Nazaj";
+
     updateTurn();
+    updateCounter();
   }
 
-  function updateTurn() {
-    turnEl.innerHTML = "Vpraša <b>" + names[askerIdx] + "</b> &nbsp;·&nbsp; odgovarja " + names[1 - askerIdx];
-  }
-
-  function drawQuestion() {
+  function drawQuestion(switchTurn) {
     const pool = STAGES[stage].questions;
     const remaining = pool.map((_, idx) => idx).filter(idx => !used.includes(idx));
+
     if (remaining.length === 0) {
       qtext.className = "qtext qplaceholder";
       qtext.textContent = "Vsa vprašanja te stopnje so izžrebana. Pojdita naprej ›";
+      skipBtn.disabled = true;
       return;
     }
+
     const pick = remaining[Math.floor(Math.random() * remaining.length)];
     used.push(pick);
     qtext.className = "qtext";
     qtext.textContent = pool[pick];
+
     qcard.classList.remove("pulse"); void qcard.offsetWidth; qcard.classList.add("pulse");
+    skipBtn.disabled = false;
+    updateCounter();
+
+    if (switchTurn) { askerIdx = 1 - askerIdx; }
     updateTurn();
-    askerIdx = 1 - askerIdx;
   }
 
   function drawAction() {
@@ -426,33 +580,74 @@
     actionEl.classList.remove("show"); void actionEl.offsetWidth; actionEl.classList.add("show");
   }
 
-  function rollAnim(btn) {
-    btn.classList.add("rolling");
-    setTimeout(() => btn.classList.remove("rolling"), 500);
+  function openGate(nextIdx) {
+    pendingStage = nextIdx;
+    const s = STAGES[nextIdx];
+    document.getElementById("gateEyebrow").textContent = (nextIdx + 1) + ". stopnja";
+    document.getElementById("gateTitle").innerHTML = s.title;
+    document.getElementById("gateSub").textContent = s.gate;
+    body.dataset.act = s.act;
+    show("gate");
   }
+
+  /* ================= UVOD ================= */
+  document.querySelectorAll(".level").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".level").forEach(b => b.classList.remove("sel"));
+      btn.classList.add("sel");
+    });
+  });
+
+  qOnlyBtn.addEventListener("click", () => {
+    const on = qOnlyBtn.classList.toggle("on");
+    qOnlyBtn.setAttribute("aria-pressed", on ? "true" : "false");
+  });
 
   document.getElementById("startBtn").addEventListener("click", () => {
     const a = document.getElementById("nameA").value.trim();
     const b = document.getElementById("nameB").value.trim();
     names = [a || "Prvi", b || "Druga"];
+    maxStage = parseInt(document.querySelector(".level.sel").dataset.max, 10);
+    onlyQuestions = qOnlyBtn.classList.contains("on");
     askerIdx = 0;
+    buildDots();
     loadStage(0);
     show("act");
   });
 
-  diceBtn.addEventListener("click", () => { rollAnim(diceBtn); drawQuestion(); });
+  /* ================= IGRA ================= */
+  diceBtn.addEventListener("click", () => { rollAnim(diceBtn); drawQuestion(true); });
   actionBtn.addEventListener("click", () => { rollAnim(actionBtn); drawAction(); });
+  skipBtn.addEventListener("click", () => { drawQuestion(false); });
 
-  document.getElementById("nextBtn").addEventListener("click", () => {
-    if (stage < STAGES.length - 1) { loadStage(stage + 1); show("act"); }
+  nextBtn.addEventListener("click", () => {
+    if (stage < maxStage) { openGate(stage + 1); }
     else { body.dataset.act = "done"; show("done"); }
   });
-  document.getElementById("backBtn").addEventListener("click", () => {
+
+  backBtn.addEventListener("click", () => {
     if (stage === 0) { body.dataset.act = "intro"; show("intro"); }
     else { loadStage(stage - 1); show("act"); }
   });
+
+  /* ================= VRATA ================= */
+  document.getElementById("gateGo").addEventListener("click", () => {
+    loadStage(pendingStage);
+    pendingStage = null;
+    show("act");
+  });
+
+  document.getElementById("gateStay").addEventListener("click", () => {
+    pendingStage = null;
+    body.dataset.act = STAGES[stage].act;
+    show("act");
+  });
+
+  /* ================= KONEC ================= */
   document.getElementById("restartBtn").addEventListener("click", () => {
-    askerIdx = 0; body.dataset.act = "intro"; show("intro");
+    askerIdx = 0;
+    body.dataset.act = "intro";
+    show("intro");
   });
 </script>
 </body>
